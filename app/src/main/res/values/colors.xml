@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="onBoarding">#FFFFFF</color>
+    <color name="main">#FF725E</color>
+    <color name="secondary">#16212D</color>
+    <color name="primaryDark">#131C26</color>
+    <color name="whiteText">#F2F2F2</color>
+    <color name="grey20">#CFCFCF</color>
+    <color name="grey40">#B7B7B7</color>
+    <color name="divider">#95A7BB</color>
 </resources>
