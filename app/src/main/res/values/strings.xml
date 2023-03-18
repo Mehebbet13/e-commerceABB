@@ -17,7 +17,9 @@
     <string name="register_apple">Apple</string>
     <string name="register_button">Sign in with password</string>
     <string name="sign_up_suggest_text">Don’t have account? Sign up</string>
+    <string name="sign_in_suggest_text">Don’t have account? Sign in</string>
     <string name="sign_up">Sign up</string>
+    <string name="change">Change</string>
     <string name="sign_up_screen_title">Create your account</string>
     <string name="sign_up_firstname">First name</string>
     <string name="sign_up_lastname">Last name</string>
@@ -29,4 +31,19 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="or">or</string>
+    <string name="recover_password_title">Get help signin in</string>
+    <string name="recover_password_nav_title">Recovery</string>
+    <string name="recover_password_hint">Username or email</string>
+    <string name="recover_password_description">Enter the email address or username associated with your account </string>
+    <string name="new_password_title">Create a new password</string>
+    <string name="new_password_hint">Enter new password</string>
+    <string name="new_password_hint_again">Duplicate new password</string>
+    <string name="new_pass_success">Congratulations!</string>
+    <string name="new_pass_success_description">Your password recovered. Account is ready to use. You will be redirected to the Home page in a few seconds… </string>
+    <string name="resend_code">Resend code in 58 s</string>
+    <string name="code_has_been_sent_to">Recovery code has been sent to eco*******ail.com</string>
+    <string name="register_code_has_been_sent_to">Authorization code has been sent to eco*******ail.com</string>
+    <string name="enter_recovery_code">Enter recovery code</string>
+    <string name="pin_screen_register_title">Great!</string>
+    <string name="verify">Verify</string>
 </resources>

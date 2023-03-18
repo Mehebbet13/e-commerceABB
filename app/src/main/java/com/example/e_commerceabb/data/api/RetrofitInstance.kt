@@ -1,4 +1,4 @@
-package com.example.e_commerceabb.api
+package com.example.e_commerceabb.data.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://rickandmortyapi.com/api/"
+private const val BASE_URL = "https://mobile.test-danit.com/"
 
 @InstallIn(SingletonComponent::class)
 @Module
