@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="16dp"
-    tools:context=".presentation.registration.SignUpFragment">
+    tools:context=".presentation.registration.view.SignUpFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/backButton"

@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.FragmentPinBinding
+import com.example.e_commerceabb.utils.Constants
 import com.example.e_commerceabb.utils.Constants.FROM_RECOVERY
 import com.example.e_commerceabb.utils.Constants.FROM_REGISTER
 import com.example.e_commerceabb.utils.Constants.PIN_DESCRIPTION
@@ -103,7 +105,13 @@ class PinFragment : Fragment(R.layout.fragment_pin) {
                 binding.continueWithContainer.visibility = View.VISIBLE
                 binding.navTitle.visibility = View.GONE
                 binding.verify.setOnClickListener {
-                    findNavController().navigate(R.id.action_pinFragment_to_signUpStepTwoFragment)
+                    val bundle = bundleOf(
+                        Constants.IS_SIGNED_IN to true
+                    )
+                    findNavController().navigate(
+                        R.id.action_pinFragment_to_signUpStepTwoFragment,
+                        bundle
+                    )
                 }
             }
 

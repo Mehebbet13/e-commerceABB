@@ -1,8 +1,11 @@
-package com.example.e_commerceabb.presentation.registration
+package com.example.e_commerceabb.presentation.registration.view
 
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.FragmentRegisterBinding
-import com.example.e_commerceabb.utils.Constants.FROM_RECOVERY
-import com.example.e_commerceabb.utils.Constants.PIN_DESCRIPTION
-import com.example.e_commerceabb.utils.Constants.PIN_FROM
-import com.example.e_commerceabb.utils.Constants.PIN_TITLE
+import com.example.e_commerceabb.utils.Constants.IS_SIGNED_IN
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding
@@ -41,19 +41,36 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             findNavController().navigateUp()
         }
         binding.register.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_signUpFragment)
+            val bundle = bundleOf(
+                IS_SIGNED_IN to true
+            )
+            findNavController().navigate(R.id.action_registerFragment_to_signUpStepTwoFragment, bundle)
         }
     }
 
     private fun setSuggestText() {
         val text = getText(R.string.sign_up_suggest_text)
         val spannable = SpannableString(text)
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(textView: View) {
+                findNavController().navigate(R.id.action_registerFragment_to_signUpFragment)
+            }
+
+            override fun updateDrawState(drawState: TextPaint) {
+                super.updateDrawState(drawState)
+                drawState.isUnderlineText = false
+                drawState.color = ContextCompat.getColor(requireActivity(), R.color.main)
+            }
+        }
         spannable.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(requireActivity(), R.color.main)),
+            clickableSpan,
             text.length - 7,
             text.length,
             Spanned.SPAN_INCLUSIVE_EXCLUSIVE
         )
+        binding.suggestText.movementMethod = LinkMovementMethod.getInstance()
         binding.suggestText.text = spannable
+        binding.suggestText.highlightColor =
+            ContextCompat.getColor(requireContext(), R.color.transparent)
     }
 }

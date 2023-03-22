@@ -5,21 +5,25 @@ import com.google.gson.annotations.SerializedName
 
 data class NewCustomerRequest(
     @SerializedName("avatarUrl")
-    val avatarUrl: String,
+    val avatarUrl: String? = "url",
     @SerializedName("email")
-    val email: String,
+    val email: String? = null,
     @SerializedName("firstName")
-    val firstName: String,
+    val firstName: String? = null,
     @SerializedName("gender")
-    val gender: String,
+    val gender: String? = "female",
     @SerializedName("isAdmin")
-    val isAdmin: Boolean,
+    val isAdmin: Boolean = false,
+    @SerializedName("enabled")
+    val enabled: Boolean = false,
     @SerializedName("lastName")
-    val lastName: String,
+    val lastName: String? = null,
     @SerializedName("login")
-    val login: String,
+    val login: String? = null,
     @SerializedName("password")
-    val password: String,
+    val password: String? = null,
     @SerializedName("telephone")
-    val telephone: String
+    val telephone: String? = null,
+    @SerializedName("customerNo")
+    val customerNo: String? = "1341"
 )

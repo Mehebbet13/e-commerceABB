@@ -1,25 +1,30 @@
-package com.example.e_commerceabb.presentation.passwordrecovery
+package com.example.e_commerceabb.presentation.passwordrecovery.view
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.e_commerceabb.R
+import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.databinding.FragmentNewPasswordBinding
 import com.example.e_commerceabb.dialogs.CustomDialogFragment
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import com.example.e_commerceabb.models.UpdatePasswordRequest
+import com.example.e_commerceabb.presentation.passwordrecovery.viewmodel.NewPasswordViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewPasswordFragment : Fragment(R.layout.fragment_new_password) {
     lateinit var binding: FragmentNewPasswordBinding
+    private val viewModel: NewPasswordViewModel by viewModels({ this })
 
     private var dialog: CustomDialogFragment? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +39,7 @@ class NewPasswordFragment : Fragment(R.layout.fragment_new_password) {
         setListeners()
         setInputs()
         handleSignUpButton()
+        observeNewPassword()
         binding.apply {
             passwordInput.addTextChangedListener {
                 setInputs()
@@ -42,6 +48,19 @@ class NewPasswordFragment : Fragment(R.layout.fragment_new_password) {
             passwordInputNew.addTextChangedListener {
                 setInputs()
                 handleSignUpButton()
+            }
+        }
+    }
+
+    private fun observeNewPassword() {
+        viewModel.newPassword.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    showSuccessDialog()
+                }
+                is Resource.Error -> {
+                    Log.e("mike err np", it.data.toString())
+                }
             }
         }
     }
@@ -138,14 +157,19 @@ class NewPasswordFragment : Fragment(R.layout.fragment_new_password) {
                 findNavController().navigateUp()
             }
             btnContinue.setOnClickListener {
-                showSuccessDialog()
+                val request = UpdatePasswordRequest(
+                    password = binding.passwordInput.text.toString(),
+                    newPassword = binding.passwordInputNew.text.toString()
+                )
+                viewModel.updatePassword(request)
             }
         }
     }
 
-    private fun navigateToHome(){
-        Log.e("mike","salam hehe")
+    private fun navigateToHome() {
+        Log.e("mike", "salam hehe")
     }
+
     private fun showSuccessDialog() {
         val dialogBuilder = CustomDialogFragment.Builder()
             .image(R.drawable.congratulation_image)

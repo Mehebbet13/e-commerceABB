@@ -17,7 +17,7 @@
     <string name="register_apple">Apple</string>
     <string name="register_button">Sign in with password</string>
     <string name="sign_up_suggest_text">Don’t have account? Sign up</string>
-    <string name="sign_in_suggest_text">Don’t have account? Sign in</string>
+    <string name="sign_in_suggest_text">Already have an account? Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="change">Change</string>
     <string name="sign_up_screen_title">Create your account</string>
@@ -46,4 +46,6 @@
     <string name="enter_recovery_code">Enter recovery code</string>
     <string name="pin_screen_register_title">Great!</string>
     <string name="verify">Verify</string>
+    <string name="login_screen_title">Sign in to account</string>
+    <string name="forgot_pass_screen_text">Forgot the password?</string>
 </resources>

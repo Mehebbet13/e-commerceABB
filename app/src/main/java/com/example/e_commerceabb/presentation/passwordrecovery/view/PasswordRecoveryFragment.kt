@@ -1,4 +1,4 @@
-package com.example.e_commerceabb.presentation.passwordrecovery
+package com.example.e_commerceabb.presentation.passwordrecovery.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

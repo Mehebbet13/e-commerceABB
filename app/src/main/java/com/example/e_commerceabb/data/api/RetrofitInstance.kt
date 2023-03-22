@@ -1,30 +1,51 @@
 package com.example.e_commerceabb.data.api
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://mobile.test-danit.com/"
+private const val BASE_URL = "https://mobile.test-danit.com/api/"
 
 @InstallIn(SingletonComponent::class)
 @Module
 class RetrofitInstance {
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
 
     @Singleton
     @Provides
-    fun getRetrofit(): Retrofit {
+    fun getRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun getCustomerAPI(retrofit: Retrofit): CustomerApi {
+        return retrofit.create(CustomerApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesOKHttpClient(rcInterceptor: RetroClientInterceptor): OkHttpClient {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        return OkHttpClient.Builder()
+            .addInterceptor(rcInterceptor)
+            .addInterceptor(interceptor)
+            .build()
+    }
+//    @Singleton
+//    @Provides
+//    fun provideOkHttpClient(interceptor: AuthInterceptor): OkHttpClient {
+//        return OkHttpClient.Builder().addInterceptor(interceptor).build()
+//    }
 }

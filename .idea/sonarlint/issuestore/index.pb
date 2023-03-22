@@ -20,8 +20,6 @@ F
 Mapp/src/androidTest/java/com/example/e_commerceabb/ExampleInstrumentedTest.kt,e/5/e5958dc57dbef0f18288087d67ea081b0cfea256
 >
 app/.gitignore,5/1/51e1c5d383dfaa35e0e7e5873a0a99355a86880f
-k
-;app/src/main/java/com/example/e_commerceabb/MainActivity.kt,d/7/d725145de9528f39944f567c060a68dc6aaf5617
 ‰
 Yapp/src/main/java/com/example/e_commerceabb/presentation/onboarding/OnboardingFragment.kt,7/9/794423e92276c6af0fdfb8bfbbf33c3904a1bd1a
 †

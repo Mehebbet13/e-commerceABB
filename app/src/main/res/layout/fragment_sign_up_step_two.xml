@@ -131,6 +131,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rememberMe" />
+    <TextView
+        android:id="@+id/forgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/forgot_pass_screen_text"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/secondary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnContinue"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/divider"
@@ -140,7 +155,7 @@
         android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnContinue">
+        app:layout_constraintTop_toBottomOf="@+id/forgotPass">
 
         <View
             android:id="@+id/divider1"
