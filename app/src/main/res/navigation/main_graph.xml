@@ -39,8 +39,72 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.e_commerceabb.presentation.registration.RegisterFragment"
+        android:name="com.example.e_commerceabb.presentation.registration.view.RegisterFragment"
         android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_registerFragment_to_signUpStepTwoFragment"
+            app:destination="@id/signUpStepTwoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.e_commerceabb.presentation.registration.view.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpStepTwoFragment"
+            app:destination="@id/signUpStepTwoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpStepTwoFragment"
+        android:name="com.example.e_commerceabb.presentation.registration.view.SignUpStepTwoFragment"
+        android:label="SignUpStepTwoFragment" >
+        <action
+            android:id="@+id/action_signUpStepTwoFragment_to_passwordRecoveryFragment"
+            app:destination="@id/passwordRecoveryFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_signUpStepTwoFragment_to_pinFragment"
+            app:destination="@id/pinFragment" />
+        <action
+            android:id="@+id/action_signUpStepTwoFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRecoveryFragment"
+        android:name="com.example.e_commerceabb.presentation.passwordrecovery.view.PasswordRecoveryFragment"
+        android:label="fragment_password_recovery"
+        tools:layout="@layout/fragment_password_recovery" >
+     <action
+            android:id="@+id/action_passwordRecoveryFragment_to_pinFragment"
+            app:destination="@id/pinFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPasswordFragment"
+        android:name="com.example.e_commerceabb.presentation.passwordrecovery.view.NewPasswordFragment"
+        android:label="fragment_new_password"
+        tools:layout="@layout/fragment_new_password" />
+    <fragment
+        android:id="@+id/pinFragment"
+        android:name="com.example.e_commerceabb.presentation.pin.PinFragment"
+        android:label="PinFragment" >
+        <action
+            android:id="@+id/action_pinFragment_to_newPasswordFragment"
+            app:destination="@id/newPasswordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_pinFragment_to_signUpStepTwoFragment"
+            app:destination="@id/signUpStepTwoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_homeFragment"

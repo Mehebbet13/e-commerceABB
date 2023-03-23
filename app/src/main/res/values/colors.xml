@@ -12,5 +12,5 @@
     <color name="grey20">#CFCFCF</color>
     <color name="grey40">#B7B7B7</color>
     <color name="divider">#95A7BB</color>
-    <color name="transparent">#14FFFFFF</color>
+    <color name="transparent">@android:color/transparent</color>
 </resources>
