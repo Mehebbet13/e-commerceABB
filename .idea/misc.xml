@@ -3,13 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_heart_fill.xml" value="0.1605" />
+        <entry key="app/src/main/res/drawable/background_color_chip_state_list.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/bckgrnd_discount.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/bottom_menu_background.xml" value="0.214" />
         <entry key="app/src/main/res/drawable/ic_cart.xml" value="0.1845" />
         <entry key="app/src/main/res/drawable/ic_category.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/ic_heart.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/ic_heart_fill.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.214" />
         <entry key="app/src/main/res/drawable/ic_orders.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1845" />
         <entry key="app/src/main/res/drawable/ic_trash.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/register_type_background.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/searchbar_background.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/welcome_button.xml" value="0.175" />
+        <entry key="app/src/main/res/font/barlow_semibold.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/font/nunito.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3176178660049628" />
+        <entry key="app/src/main/res/layout/fragment_homw.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.41203703703703703" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.4244791666666667" />
+        <entry key="app/src/main/res/layout/list_item_home_category.xml" value="0.29739583333333336" />
+        <entry key="app/src/main/res/layout/list_item_home_product.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/list_item_home_rv.xml" value="0.23229166666666667" />
+        <entry key="app/src/main/res/layout/list_item_home_title.xml" value="0.23229166666666667" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.2171875" />
       </map>
     </option>

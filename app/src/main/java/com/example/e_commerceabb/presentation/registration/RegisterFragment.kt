@@ -31,6 +31,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
+        binding.register.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+        }
     }
 
     private fun setSuggestText() {

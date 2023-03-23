@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CheckableChipStyle" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="android:checkable">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="chipIconVisible">false</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="chipEndPadding">16dp</item>
+        <item name="chipStartPadding">16dp</item>
+        <item name="chipBackgroundColor">@color/black</item>
+        <item name="chipCornerRadius">12dp</item>
+        <item name="chipIcon">@drawable/ic_heart</item>
+
+    </style>
+</resources>
