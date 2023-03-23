@@ -50,6 +50,9 @@
             android:id="@+id/action_registerFragment_to_signUpStepTwoFragment"
             app:destination="@id/signUpStepTwoFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -104,11 +107,6 @@
             android:id="@+id/action_pinFragment_to_signUpStepTwoFragment"
             app:destination="@id/signUpStepTwoFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
-    </fragment>
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"

@@ -46,7 +46,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             )
             findNavController().navigate(R.id.action_registerFragment_to_signUpStepTwoFragment, bundle)
         }
-        binding.register.setOnClickListener {
+        binding.facebookTitle.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
         }
     }

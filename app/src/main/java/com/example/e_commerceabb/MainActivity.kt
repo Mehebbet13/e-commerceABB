@@ -35,10 +35,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeVisibilityOfBottomMenu(destinationId: Int) {
         when (destinationId) {
-            R.id.onboardingFragment, R.id.aboutAppFragment, R.id.welcomeFragment ->
-                binding.bottomNav.isVisible = false
-            else -> binding.bottomNav.isVisible = true
+            R.id.homeFragment->
+                binding.bottomNav.isVisible = true
+            else -> binding.bottomNav.isVisible = false
         }
     }
 }
-
