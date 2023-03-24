@@ -17,12 +17,12 @@ class CustomerRepositoryImpl @Inject constructor(private val customerApi: Custom
         return safeApiCall { customerApi.logIntoStore(request) }
     }
 
-    override suspend fun getCustomerData(): GetCustomerResponse {
-        return customerApi.getCustomerData()
+    override suspend fun getCustomerData(): Resource<GetCustomerResponse> {
+        return safeApiCall { customerApi.getCustomerData() }
     }
 
-    override suspend fun updateCustomer(request: UpdateCustomerRequest): GetCustomerResponse {
-        return customerApi.updateCustomer(request)
+    override suspend fun updateCustomer(request: UpdateCustomerRequest): Resource<GetCustomerResponse> {
+        return safeApiCall { customerApi.updateCustomer(request) }
     }
 
     override suspend fun updateCustomerPassword(request: UpdatePasswordRequest): Resource<UpdatePasswordResponse> {

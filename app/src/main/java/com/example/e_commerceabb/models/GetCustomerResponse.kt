@@ -28,6 +28,10 @@ data class GetCustomerResponse(
     val password: String,
     @SerializedName("telephone")
     val telephone: String,
+    @SerializedName("dateOfBirth")
+    val dateOfBirth: String,
+    @SerializedName("fullName")
+    val fullName: String,
     @SerializedName("__v")
     val v: Int
 )

@@ -1,5 +1,6 @@
 package com.example.e_commerceabb.presentation.registration.view
 
+import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -65,11 +66,12 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(isSignedIn)
-        setListeners() // TODO handle remember me shared preferences
+        setListeners()
         setInputs()
         handleSignUpButton()
         observeCustomer()
         observeLogin()
+        handleRememberMe()
         binding.apply {
             passwordInput.addTextChangedListener {
                 setInputs()
@@ -103,13 +105,25 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
             }
         }
     }
-
+    private fun handleRememberMe() {
+        binding.rememberMeCb.setOnCheckedChangeListener { _, _ ->
+            if (binding.rememberMeCb.isChecked) {
+                val sharedPreferences =
+                    context?.getSharedPreferences(Constants.MY_PREFS, Context.MODE_PRIVATE)
+                sharedPreferences?.edit()?.putBoolean(Constants.IS_USER_REGISTERED, true)?.apply()
+            } else {
+                val sharedPreferences =
+                    context?.getSharedPreferences(Constants.MY_PREFS, Context.MODE_PRIVATE)
+                sharedPreferences?.edit()?.putBoolean(Constants.IS_USER_REGISTERED, false)?.apply()
+            }
+        }
+    }
     private fun observeLogin() {
         viewModel.login.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
                     it.data?.token?.let { it1 -> tokenManager.saveToken(it1) }
-                    Log.e("mike succ login", it.data.toString())
+                    findNavController().navigate(R.id.action_signUpStepTwoFragment_to_fillProfileFragment)
                 }
                 is Resource.Error -> {
                     Log.e("mike err login", it.message.toString())

@@ -48,6 +48,13 @@
     <string name="verify">Verify</string>
     <string name="login_screen_title">Sign in to account</string>
     <string name="forgot_pass_screen_text">Forgot the password?</string>
+    <string name="fill_your_profile">Fill your profile</string>
+    <string name="full_name">Full name</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="phone_number">Phone number</string>
+    <string name="gender">Gender</string>
+    <string name="skip">Skip</string>
+    <string name="edit_profile">Edit profile</string>
     <string name="home">Home</string>
     <string name="orders">Orders</string>
     <string name="cart">Cart</string>
