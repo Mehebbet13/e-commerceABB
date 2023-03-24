@@ -48,4 +48,9 @@
     <string name="verify">Verify</string>
     <string name="login_screen_title">Sign in to account</string>
     <string name="forgot_pass_screen_text">Forgot the password?</string>
+    <string name="home">Home</string>
+    <string name="orders">Orders</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="search_hint">Search for anything</string>
 </resources>

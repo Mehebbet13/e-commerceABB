@@ -46,6 +46,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             )
             findNavController().navigate(R.id.action_registerFragment_to_signUpStepTwoFragment, bundle)
         }
+        binding.facebookTitle.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+        }
     }
 
     private fun setSuggestText() {
