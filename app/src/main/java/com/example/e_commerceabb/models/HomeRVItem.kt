@@ -3,7 +3,7 @@ package com.example.e_commerceabb.models
 
 interface HomeRVItem
 data class TitleModel(
-    val title: String,
+    val title: String? = null,
     val seeAll: String? = null
 ) : HomeRVItem
 
@@ -12,7 +12,8 @@ data class HomeCategoryListModel(
 ) : HomeRVItem
 
 data class HomeProductsListModel(
-    val list: ArrayList<HomeProductsModel>?
+    val title: TitleModel,
+    val list: List<HomeProductsModel>
 ) : HomeRVItem
 
 

@@ -7,4 +7,4 @@ data class HomeProductsModel(
     val subtitle: String,
     val discountAmount: String,
     val amount: String,
-)
+):HomeRVItem

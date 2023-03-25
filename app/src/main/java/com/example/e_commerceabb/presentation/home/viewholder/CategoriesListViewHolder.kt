@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.databinding.ListItemHomeRvBinding
 import com.example.e_commerceabb.models.HomeCategoryListModel
-import com.example.e_commerceabb.presentation.home.CategoriesAdapter
+import com.example.e_commerceabb.presentation.home.adapter.CategoriesAdapter
 
 class CategoriesListViewHolder(
     private val binding: ListItemHomeRvBinding

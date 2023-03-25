@@ -1,5 +1,6 @@
 package com.example.e_commerceabb.presentation.home.viewholder
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +11,10 @@ class TitleViewHolder(private val binding: ListItemHomeTitleBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(model: TitleModel) {
+        Log.d("gdfgdfgdfgdfg","pos: holder")
         with(binding) {
-            txtTitle.text = model.title
-            seeAll.text = model.seeAll
+            txtTitle.text = "model.title"
+            seeAll.text = "model.seeAll"
         }
     }
 

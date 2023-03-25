@@ -1,5 +1,6 @@
-package com.example.e_commerceabb.presentation.home
+package com.example.e_commerceabb.presentation.home.adapter
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.models.HomeCategoryListModel
@@ -24,6 +25,8 @@ class HomeAdapter : BaseAdapter<HomeRVItem, RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        Log.d("dsgdfgdfgdf", viewType.toString())
+
         return when (viewType) {
             TITLE_VIEW_TYPE -> TitleViewHolder.create(parent)
             CATEGORIES_VIEW_TYPE -> CategoriesListViewHolder.create(parent)
@@ -35,10 +38,12 @@ class HomeAdapter : BaseAdapter<HomeRVItem, RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
         when (val item = list[position]) {
             is TitleModel -> (holder as TitleViewHolder).bind(item)
             is HomeCategoryListModel -> (holder as CategoriesListViewHolder).bind(item)
             is HomeProductsListModel -> (holder as ProductListViewHolder).bind(item)
+            else -> Log.d("gdfgdfgdfgdfg","pos: $item")
         }
     }
 
