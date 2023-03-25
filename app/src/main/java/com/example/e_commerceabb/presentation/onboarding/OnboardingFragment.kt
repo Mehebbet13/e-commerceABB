@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.FragmentOnboardingBinding
 import com.example.e_commerceabb.utils.Constants.IS_USER_REGISTERED
 import com.example.e_commerceabb.utils.Constants.MY_PREFS
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     lateinit var binding: FragmentOnboardingBinding
@@ -29,8 +32,14 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         super.onViewCreated(view, savedInstanceState)
         binding.logo.setOnClickListener {
             val scaleAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.scale)
-            binding.logo.startAnimation(scaleAnim)
-            navigateToWelcomeScreen()
+            binding.logoCircle.startAnimation(scaleAnim)
+            lifecycleScope.launch {
+                delay(1800)
+                activity?.window?.navigationBarColor = requireContext().getColor(R.color.main)
+                activity?.window?.statusBarColor = requireContext().getColor(R.color.main)
+                delay(600)
+                navigateToWelcomeScreen()
+            }
         }
     }
 

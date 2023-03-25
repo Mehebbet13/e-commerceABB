@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_onboardingFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
+            app:enterAnim="@anim/slide_up"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_onboardingFragment_to_fillProfileFragment"
@@ -27,7 +27,7 @@
         <action
             android:id="@+id/action_welcomeFragment_to_aboutAppFragment"
             app:destination="@id/aboutAppFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
+            app:enterAnim="@anim/slide_up" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"
