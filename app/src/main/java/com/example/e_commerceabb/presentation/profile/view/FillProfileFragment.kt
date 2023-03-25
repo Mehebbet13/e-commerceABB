@@ -2,12 +2,12 @@ package com.example.e_commerceabb.presentation.profile.view
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +21,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.e_commerceabb.BuildConfig
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.data.api.Resource
@@ -28,9 +29,12 @@ import com.example.e_commerceabb.databinding.FragmentFillProfileBinding
 import com.example.e_commerceabb.models.GetCustomerResponse
 import com.example.e_commerceabb.models.UpdateCustomerRequest
 import com.example.e_commerceabb.presentation.profile.viewmodel.FillProfileViewModel
+import com.example.e_commerceabb.utils.Constants
 import com.example.e_commerceabb.utils.Constants.EMPTY
+import com.example.e_commerceabb.utils.TokenManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
@@ -38,6 +42,9 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
     private val pickImage = 100
     private var avatar: String? = null
     private val viewModel: FillProfileViewModel by viewModels({ this })
+
+    @Inject
+    lateinit var tokenManager: TokenManager
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -84,8 +91,26 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
         handleInputs()
         observeUpdateCustomer()
         handleEditProfile()
-        initView()
-        viewModel.getCustomer()
+        handleLogOut()
+        setListeners()
+//        initView()
+//        viewModel.getCustomer()
+    }
+
+    private fun handleLogOut() {
+        binding.logOut.setOnClickListener {
+            val sharedPreferences =
+                context?.getSharedPreferences(Constants.MY_PREFS, Context.MODE_PRIVATE)
+            sharedPreferences?.edit()?.putBoolean(Constants.IS_USER_REGISTERED, false)?.apply()
+            tokenManager.removeToken()
+            findNavController().navigate(R.id.action_fillProfileFragment_to_onboardingFragment)
+        }
+    }
+
+    private fun setListeners() {
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun getCustomerData(data: GetCustomerResponse) {
@@ -171,7 +196,7 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
             dateOfBirth.isFocusableInTouchMode = visible
             phoneNumber.isFocusableInTouchMode = visible
             gender.isFocusableInTouchMode = visible
-            btnSkip.isVisible = visible
+//            btnSkip.isVisible = visible
             btnContinue.isVisible = visible
         }
     }
@@ -207,10 +232,13 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
                 is Resource.Success -> {
                     it.data?.let { it1 -> getCustomerData(it1) }
                     setInputVisibilities(false)
-                    Log.e("mike succ uc", it.data.toString())
                 }
                 is Resource.Error -> {
-                    Log.e("mike err login", it.message.toString())
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -234,7 +262,8 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
         val fullNameIsNotEmpty = binding.fullName.text?.isNotEmpty() == true
         val phoneNumberIsNotEmpty = binding.phoneNumber.text?.isNotEmpty() == true
         val isButtonOkay =
-            usernameIsNotEmpty || emailIsNotEmpty || dateOfBirthIsNotEmpty || genderIsNotEmpty || fullNameIsNotEmpty || phoneNumberIsNotEmpty || avatar.isNullOrEmpty().not()
+            usernameIsNotEmpty || emailIsNotEmpty || dateOfBirthIsNotEmpty || genderIsNotEmpty || fullNameIsNotEmpty || phoneNumberIsNotEmpty || avatar.isNullOrEmpty()
+                .not()
         if (isButtonOkay) {
             binding.btnContinue.isClickable = true
             binding.btnContinue.alpha = 1f
@@ -266,6 +295,9 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
                 avatarUrl = avatar
             )
             viewModel.updateCustomer(customerRequest)
+        }
+        binding.btnSkip.setOnClickListener {
+            findNavController().navigate(R.id.ordersFragment)
         }
     }
 }

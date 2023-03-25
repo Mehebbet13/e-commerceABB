@@ -64,7 +64,7 @@ abstract class BaseRepository() {
                 moshiAdapter.fromJson(it)
             }
         } catch (exception: Exception) {
-            ErrorResponse("Not Found", "Fail")
+            ErrorResponse("Something went wrong", "Fail")
         }
     }
 }

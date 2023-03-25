@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -88,7 +89,6 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
         viewModel.customer.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
-                    Log.e("mike succ", it.message.toString())
                     val bundle = bundleOf(
                         Constants.PIN_FROM to Constants.FROM_REGISTER,
                         Constants.PIN_TITLE to getString(R.string.pin_screen_register_title),
@@ -100,8 +100,11 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
                     )
                 }
                 is Resource.Error -> {
-                    Log.e("mike err", it.data.toString())
-                }
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_SHORT
+                    ).show()                }
             }
         }
     }
@@ -126,8 +129,11 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
                     findNavController().navigate(R.id.action_signUpStepTwoFragment_to_fillProfileFragment)
                 }
                 is Resource.Error -> {
-                    Log.e("mike err login", it.message.toString())
-                }
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_SHORT
+                    ).show()                }
             }
         }
     }

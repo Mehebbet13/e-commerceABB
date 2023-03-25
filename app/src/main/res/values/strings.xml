@@ -60,4 +60,17 @@
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
     <string name="search_hint">Search for anything</string>
+    <string name="wish_list">My wish list</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="ongoing_empty_text">You don’t have an ongoing orders at this time</string>
+    <string name="completed">Completed</string>
+    <string name="completed_empty_text">You don’t have completed orders yet</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="cancelled_empty_text">There are no cancelled orders</string>
+    <string name="wish_list_title">Wish list</string>
+    <string name="review_hint">Type review</string>
+    <string name="how_is_your_order">How is your order?</string>
+    <string name="track_order">Track order</string>
+    <string name="in_delivery">In delivery</string>
+    <string name="buy_again">Buy again</string>
 </resources>

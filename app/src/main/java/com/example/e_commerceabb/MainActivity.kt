@@ -1,6 +1,7 @@
 package com.example.e_commerceabb
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -42,7 +43,9 @@ class MainActivity : AppCompatActivity() {
                     window?.navigationBarColor = ContextCompat.getColor(this, R.color.main)
                 }
                 else -> {
+                    window.navigationBarColor = applicationContext.getColor(R.color.transparent)
                     window.statusBarColor = applicationContext.getColor(R.color.transparent)
+                    window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                 }
             }
         }
@@ -66,6 +69,8 @@ class MainActivity : AppCompatActivity() {
             R.id.homeFragment ->
                 binding.bottomNav.isVisible = true
             R.id.fillProfileFragment ->
+                binding.bottomNav.isVisible = true
+            R.id.ordersFragment ->
                 binding.bottomNav.isVisible = true
             else -> binding.bottomNav.isVisible = false
         }
