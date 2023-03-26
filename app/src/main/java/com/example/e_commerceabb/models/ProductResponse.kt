@@ -14,6 +14,8 @@ data class ProductResponse(
     val id: String? = null,
     @SerializedName("name")
     val name: String? = null,
+    @SerializedName("description")
+    val description: String? = null,
     @SerializedName("currentPrice")
     val currentPrice: Double? = null,
     @SerializedName("previousPrice")

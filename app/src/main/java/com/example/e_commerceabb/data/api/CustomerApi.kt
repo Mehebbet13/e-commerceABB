@@ -38,4 +38,7 @@ interface CustomerApi {
 
     @GET("products")
     suspend fun getProducts(): Response<ArrayList<ProductResponse>>
+
+    @GET("catalog")
+    suspend fun getCatalog(): Response<ArrayList<CatalogResponse>>
 }

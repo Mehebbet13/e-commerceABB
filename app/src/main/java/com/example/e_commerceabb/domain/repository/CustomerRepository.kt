@@ -12,4 +12,5 @@ interface CustomerRepository {
     suspend fun updateCustomerPassword(request: UpdatePasswordRequest): Resource<UpdatePasswordResponse>
     suspend fun products(request: NewProductRequest): Resource<ProductResponse>
     suspend fun getProducts(): Resource<ArrayList<ProductResponse>>
+    suspend fun getCatalog(): Resource<ArrayList<CatalogResponse>>
 }

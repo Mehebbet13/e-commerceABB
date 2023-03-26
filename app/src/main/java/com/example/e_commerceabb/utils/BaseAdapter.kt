@@ -1,6 +1,7 @@
 package com.example.e_commerceabb.utils
 
 import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commerceabb.models.HomeCategoryListModel
 
 abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder> : RecyclerView.Adapter<VH>() {
 
@@ -11,6 +12,15 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder> : RecyclerView.Adapt
     fun setData(items: List<T>) {
         list.clear()
         list.addAll(items)
+        notifyDataSetChanged()
+    }
+
+    fun setList(newList: List<T>) {
+        if (newList==newList.filterIsInstance<HomeCategoryListModel>()) {
+            list.addAll(0, newList)
+        } else {
+            list.addAll(newList)
+        }
         notifyDataSetChanged()
     }
 }

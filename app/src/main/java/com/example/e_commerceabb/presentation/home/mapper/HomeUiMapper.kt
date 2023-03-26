@@ -6,34 +6,59 @@ import com.example.e_commerceabb.utils.Constants.EMPTY
 import javax.inject.Inject
 
 class HomeUiMapper @Inject constructor() {
-    fun mapProductsItemToUiModel(
+    private fun mapProductsItemToUiModel(
         productList: ArrayList<ProductResponse>
     ): List<HomeProductsModel> {
-        return productList.mapNotNull{response->
-        HomeProductsModel(
-            title = response.name ?: EMPTY,
-            subtitle = response.name ?: EMPTY,
-            discountLAbel = " -20%",
-            discountAmount ="sdf",
-            amount = "sdf",
-            image = R.drawable.rectangle_14
-        )
-    }}
+        return productList.map { response ->
+            HomeProductsModel(
+                title = response.name ?: EMPTY,
+                subtitle = response.description ?: EMPTY,
+                discountLAbel = "-10%",
+                discountAmount = "${response.currentPrice} ${"$"}",
+                amount = "${response.previousPrice} ${"$"}",
+                image = R.drawable.rectangle_14
+              //  image = response.imageUrls?.get(1)?:"img/products/men/004.png"
+            )
+        }
+    }
 
     fun mapProductsToUiModel(
         productList: ArrayList<ProductResponse>
     ): List<HomeProductsListModel> {
-        return listOf(HomeProductsListModel(
-            title = TitleModel(
-                title = "Products"
-            ),
-            list = mapProductsItemToUiModel(productList)
-        ),HomeProductsListModel(
-            title = TitleModel(
-                title = "Caarts"
-            ),
-            list = mapProductsItemToUiModel(productList)
-        ))
+        return listOf(
+            HomeProductsListModel(
+                title = TitleModel(
+                    title = "Products",
+                    seeAll = "See all"
+                ),
+                list = mapProductsItemToUiModel(productList)
+            )
+        )
+    }
+
+    private fun mapCategoryItemToUiModel(
+        categoryList: ArrayList<CatalogResponse>
+    ): List<HomeCategoryModel> {
+        return categoryList.mapNotNull { response ->
+            HomeCategoryModel(
+                title = response.name,
+                image = R.drawable.rectangle_14
+                //   image = response.imgUrl
+            )
+        }
+    }
+
+    fun mapCategoryToUiModel(
+        categoryList: ArrayList<CatalogResponse>
+    ): List<HomeCategoryListModel> {
+        return listOf(
+            HomeCategoryListModel(
+                title = TitleModel(
+                    title = "Category"
+                ),
+                list = mapCategoryItemToUiModel(categoryList)
+            )
+        )
     }
 
 

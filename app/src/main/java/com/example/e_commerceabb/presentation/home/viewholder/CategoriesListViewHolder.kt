@@ -14,8 +14,10 @@ class CategoriesListViewHolder(
 
     fun bind(model: HomeCategoryListModel) {
         val adapter = CategoriesAdapter()
-        model.list?.let { adapter.setData(it) }
+
+        model.list.let { adapter.setData(it) }
         with(binding) {
+            txtTitle.text = model.title.title
             rvHomeItems.layoutManager =
                 GridLayoutManager(itemView.context, 4)
             rvHomeItems.adapter = adapter

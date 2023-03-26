@@ -16,7 +16,8 @@ class ProductListViewHolder(
         val adapter = ProductAdapter()
         model.list.let { adapter.setData(it) }
         with(binding) {
-            title.text = model.title.title
+            seeAll.text = model.title.seeAll
+            txtTitle.text = model.title.title
             rvHomeItems.layoutManager =
                 LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
             rvHomeItems.adapter = adapter
