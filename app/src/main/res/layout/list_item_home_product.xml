@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginEnd="4dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
     android:layout_marginTop="8dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_marginEnd="4dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgProduct"
@@ -46,23 +46,29 @@
 
     <TextView
         android:id="@+id/titleProduct"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:fontFamily="@font/nunito_medium"
+        android:maxLines="1"
         android:textColor="@color/primaryDark"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/imgProduct"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
         app:layout_constraintTop_toBottomOf="@id/imgProduct"
         tools:text="High quality" />
 
     <TextView
         android:id="@+id/subtitleProduct"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:fontFamily="@font/nunito_regular"
+        android:maxLines="1"
         android:textColor="@color/secondary"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/imgProduct"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
         app:layout_constraintTop_toBottomOf="@id/titleProduct"
         tools:text="High" />
 
@@ -90,7 +96,7 @@
 
     <View
         android:layout_width="0dp"
-        android:layout_height="0.1dp"
+        android:layout_height="0.5dp"
         android:background="@color/secondary"
         app:layout_constraintBottom_toBottomOf="@id/amountProduct"
         app:layout_constraintEnd_toEndOf="@id/amountProduct"

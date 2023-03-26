@@ -1,4 +1,4 @@
-package com.example.e_commerceabb.presentation.home
+package com.example.e_commerceabb.presentation.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

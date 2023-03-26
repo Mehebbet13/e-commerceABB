@@ -5,11 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.databinding.ListItemHomeRvBinding
-import com.example.e_commerceabb.models.HomeCategoryListModel
 import com.example.e_commerceabb.models.HomeProductsListModel
-import com.example.e_commerceabb.models.HomeProductsModel
-import com.example.e_commerceabb.presentation.home.CategoriesAdapter
-import com.example.e_commerceabb.presentation.home.ProductAdapter
+import com.example.e_commerceabb.presentation.home.adapter.ProductAdapter
 
 class ProductListViewHolder(
     private val binding: ListItemHomeRvBinding
@@ -17,8 +14,10 @@ class ProductListViewHolder(
 
     fun bind(model: HomeProductsListModel) {
         val adapter = ProductAdapter()
-        model.list?.let { adapter.setData(it) }
+        model.list.let { adapter.setData(it) }
         with(binding) {
+            seeAll.text = model.title.seeAll
+            txtTitle.text = model.title.title
             rvHomeItems.layoutManager =
                 LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
             rvHomeItems.adapter = adapter

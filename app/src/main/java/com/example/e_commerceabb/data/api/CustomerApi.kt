@@ -30,4 +30,15 @@ interface CustomerApi {
     suspend fun updateCustomerPassword(
         @Body request: UpdatePasswordRequest
     ): Response<UpdatePasswordResponse>
+
+    @POST("customers/products")
+    suspend fun products(
+        @Body request: NewProductRequest
+    ): Resource<ProductResponse>
+
+    @GET("products")
+    suspend fun getProducts(): Response<ArrayList<ProductResponse>>
+
+    @GET("catalog")
+    suspend fun getCatalog(): Response<ArrayList<CatalogResponse>>
 }
