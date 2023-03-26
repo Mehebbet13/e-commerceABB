@@ -13,8 +13,11 @@
         <action
             android:id="@+id/action_onboardingFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
+            app:enterAnim="@anim/slide_up"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_fillProfileFragment"
+            app:destination="@id/fillProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -24,7 +27,7 @@
         <action
             android:id="@+id/action_welcomeFragment_to_aboutAppFragment"
             app:destination="@id/aboutAppFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
+            app:enterAnim="@anim/slide_up" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"
@@ -79,6 +82,9 @@
             android:id="@+id/action_signUpStepTwoFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_signUpStepTwoFragment_to_fillProfileFragment"
+            app:destination="@id/fillProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordRecoveryFragment"
@@ -113,4 +119,28 @@
         android:name="com.example.e_commerceabb.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fillProfileFragment"
+        android:name="com.example.e_commerceabb.presentation.profile.view.FillProfileFragment"
+        android:label="FillProfileFragment" >
+        <action
+            android:id="@+id/action_fillProfileFragment_to_onboardingFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/onboardingFragment"
+            app:destination="@id/onboardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.e_commerceabb.presentation.orders.view.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_ordersFragment_to_favoriteProductsFragment"
+            app:destination="@id/favoriteProductsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteProductsFragment"
+        android:name="com.example.e_commerceabb.presentation.favorites.view.FavoriteProductsFragment"
+        android:label="fragment_favorite_products"
+        tools:layout="@layout/fragment_favorite_products" />
 </navigation>

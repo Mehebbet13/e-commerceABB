@@ -20,4 +20,6 @@ object Constants {
     const val EMPTY = ""
     const val PREFS_TOKEN_FILE = "PREFS_TOKEN_FILE"
     const val USER_TOKEN = "USER_TOKEN"
+    const val MY_PREFS = "myPrefs"
+    const val IS_USER_REGISTERED = "isUserRegistered"
 }

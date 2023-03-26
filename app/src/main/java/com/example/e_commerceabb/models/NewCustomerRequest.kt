@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class NewCustomerRequest(
     @SerializedName("avatarUrl")
-    val avatarUrl: String? = "url",
+    val avatarUrl: String? = null,
     @SerializedName("email")
     val email: String? = null,
     @SerializedName("firstName")
     val firstName: String? = null,
     @SerializedName("gender")
-    val gender: String? = "female",
+    val gender: String? = null,
     @SerializedName("isAdmin")
     val isAdmin: Boolean = false,
     @SerializedName("enabled")
@@ -25,5 +25,5 @@ data class NewCustomerRequest(
     @SerializedName("telephone")
     val telephone: String? = null,
     @SerializedName("customerNo")
-    val customerNo: String? = "1341"
+    val customerNo: String? = null
 )

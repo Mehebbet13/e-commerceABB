@@ -1,5 +1,6 @@
 package com.example.e_commerceabb.presentation.registration.view
 
+import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -17,6 +18,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.FragmentSignUpBinding
 import com.example.e_commerceabb.utils.Constants
+import com.example.e_commerceabb.utils.Constants.IS_USER_REGISTERED
+import com.example.e_commerceabb.utils.Constants.MY_PREFS
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
@@ -37,6 +40,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         setListeners()
         setInputs()
         handleSignUpButton()
+        handleRememberMe()
         binding.apply {
             firstName.addTextChangedListener {
                 setInputs()
@@ -121,6 +125,16 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         binding.suggestText.text = spannable
         binding.suggestText.highlightColor =
             ContextCompat.getColor(requireContext(), R.color.transparent)
+    }
+
+    private fun handleRememberMe() {
+        if (binding.rememberMeCb.isChecked) {
+            val sharedPreferences = context?.getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE)
+            sharedPreferences?.edit()?.putBoolean(IS_USER_REGISTERED, true)?.apply()
+        } else {
+            val sharedPreferences = context?.getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE)
+            sharedPreferences?.edit()?.putBoolean(IS_USER_REGISTERED, false)?.apply()
+        }
     }
 
     private fun handleSignUpButton() {

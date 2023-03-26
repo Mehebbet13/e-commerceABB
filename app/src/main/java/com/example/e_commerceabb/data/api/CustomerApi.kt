@@ -19,12 +19,12 @@ interface CustomerApi {
     ): Response<LoginResponse>
 
     @GET("customers/customer")
-    suspend fun getCustomerData(): GetCustomerResponse
+    suspend fun getCustomerData(): Response<GetCustomerResponse>
 
     @PUT("customers")
     suspend fun updateCustomer(
         @Body request: UpdateCustomerRequest
-    ): GetCustomerResponse
+    ): Response<GetCustomerResponse>
 
     @PUT("customers/password")
     suspend fun updateCustomerPassword(

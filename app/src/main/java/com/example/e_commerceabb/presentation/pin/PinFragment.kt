@@ -50,8 +50,14 @@ class PinFragment : Fragment(R.layout.fragment_pin) {
         initView()
         handlePinVerifyButton()
         setResendText()
+        setListeners()
     }
 
+    private fun setListeners() {
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
     private fun handlePinInputs() {
         binding.apply {
             firstPin.addTextChangedListener {
