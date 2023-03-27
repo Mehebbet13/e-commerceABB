@@ -21,14 +21,22 @@
         <entry key="app/src/main/res/font/barlow_semibold.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/font/nunito.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/favorite_product.xml" value="0.4244791666666667" />
+        <entry key="app/src/main/res/layout/fragment_custom_dialog.xml" value="0.4244791666666667" />
+        <entry key="app/src/main/res/layout/fragment_favorite_products.xml" value="0.4244791666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3176178660049628" />
         <entry key="app/src/main/res/layout/fragment_homw.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.41203703703703703" />
+        <entry key="app/src/main/res/layout/fragment_products.xml" value="0.10152932134803361" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.4244791666666667" />
+        <entry key="app/src/main/res/layout/layout_progress.xml" value="0.4244791666666667" />
         <entry key="app/src/main/res/layout/list_item_home_category.xml" value="0.29739583333333336" />
-        <entry key="app/src/main/res/layout/list_item_home_product.xml" value="0.8303176879882813" />
+        <entry key="app/src/main/res/layout/list_item_home_product.xml" value="0.44126074498567336" />
+        <entry key="app/src/main/res/layout/list_item_home_product_grouped.xml" value="0.4244791666666667" />
         <entry key="app/src/main/res/layout/list_item_home_rv.xml" value="0.23229166666666667" />
         <entry key="app/src/main/res/layout/list_item_home_title.xml" value="0.23229166666666667" />
+        <entry key="app/src/main/res/layout/list_item_product.xml" value="0.4244791666666667" />
+        <entry key="app/src/main/res/layout/ordered_product.xml" value="0.4244791666666667" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.2171875" />
       </map>
     </option>

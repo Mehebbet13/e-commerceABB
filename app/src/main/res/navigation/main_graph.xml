@@ -118,7 +118,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.e_commerceabb.presentation.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fillProfileFragment"
         android:name="com.example.e_commerceabb.presentation.profile.view.FillProfileFragment"
@@ -143,4 +147,8 @@
         android:name="com.example.e_commerceabb.presentation.favorites.view.FavoriteProductsFragment"
         android:label="fragment_favorite_products"
         tools:layout="@layout/fragment_favorite_products" />
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.e_commerceabb.presentation.product.view.ProductsFragment"
+        android:label="ProductsFragment" />
 </navigation>

@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-nearby:18.5.0'
     def lifecycle_version = "2.5.1"
     def fragment_version = "1.5.4"
     def paging_version = "3.1.1"

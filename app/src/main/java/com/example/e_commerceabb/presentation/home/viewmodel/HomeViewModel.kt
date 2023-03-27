@@ -27,7 +27,10 @@ class HomeViewModel @Inject constructor(
     val catalog: LiveData<List<HomeCategoryListModel>>
         get() = _catalog
 
+    var isRefreshing = MutableLiveData(false)
+
     fun getProducts() {
+        isRefreshing.postValue(true)
         viewModelScope.launch {
             when (val response = repository.getProducts()) {
                 is Resource.Success -> {
@@ -36,6 +39,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
             }
+            isRefreshing.postValue(false)
         }
     }
 

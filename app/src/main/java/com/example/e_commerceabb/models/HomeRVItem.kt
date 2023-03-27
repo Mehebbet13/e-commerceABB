@@ -4,7 +4,8 @@ package com.example.e_commerceabb.models
 interface HomeRVItem
 data class TitleModel(
     val title: String? = null,
-    val seeAll: String? = null
+    val seeAll: String? = null,
+    val onClick: () -> Unit
 ) : HomeRVItem
 
 data class HomeCategoryListModel(

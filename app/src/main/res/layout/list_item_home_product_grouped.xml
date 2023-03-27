@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="4dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="168dp"
+        android:layout_height="168dp"
+        android:src="@drawable/congratulation_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/discountLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/backgournd_discount"
+        android:fontFamily="@font/nunito_bold"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/imgProduct"
+        app:layout_constraintTop_toTopOf="@id/imgProduct"
+        tools:text="-10$" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintBottom_toBottomOf="@id/discountLabel"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintTop_toTopOf="@id/discountLabel" />
+
+    <TextView
+        android:id="@+id/titleProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito_medium"
+        android:maxLines="1"
+        android:textColor="@color/primaryDark"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/imgProduct"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintTop_toBottomOf="@id/imgProduct"
+        tools:text="High quality" />
+
+    <TextView
+        android:id="@+id/subtitleProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito_regular"
+        android:maxLines="1"
+        android:textColor="@color/secondary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/imgProduct"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintTop_toBottomOf="@id/titleProduct"
+        tools:text="High" />
+
+    <TextView
+        android:id="@+id/discountAmountProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/primaryDark"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintTop_toBottomOf="@id/subtitleProduct"
+        tools:text="544$" />
+
+    <TextView
+        android:id="@+id/amountProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/secondary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintTop_toBottomOf="@id/discountAmountProduct"
+        tools:text="600$" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/secondary"
+        app:layout_constraintBottom_toBottomOf="@id/amountProduct"
+        app:layout_constraintEnd_toEndOf="@id/amountProduct"
+        app:layout_constraintStart_toStartOf="@id/amountProduct"
+        app:layout_constraintTop_toTopOf="@id/amountProduct" />
+</androidx.constraintlayout.widget.ConstraintLayout>
