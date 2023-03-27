@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.R
-import com.example.e_commerceabb.databinding.ListItemHomeProductBinding
 import com.example.e_commerceabb.databinding.ListItemHomeProductGroupedBinding
 import com.example.e_commerceabb.databinding.ListItemProductBinding
 import com.example.e_commerceabb.models.ProductResponse
@@ -13,9 +12,10 @@ import com.example.e_commerceabb.utils.load
 
 class ProductAdapter(val isGrouped: Boolean) :
     BaseAdapter<ProductResponse, RecyclerView.ViewHolder>() {
+    var itemClickListener: (() -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-
         val bindingGrouped = ListItemHomeProductGroupedBinding.inflate(inflater, parent, false)
         val binding = ListItemProductBinding.inflate(inflater, parent, false)
 
@@ -29,8 +29,12 @@ class ProductAdapter(val isGrouped: Boolean) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (isGrouped) {
             (holder as ProductGroupedViewHolder).bind(list[position])
-        } else
+        } else {
             (holder as ProductViewHolder).bind(list[position])
+        }
+        holder.itemView.setOnClickListener {
+            itemClickListener?.invoke()
+        }
     }
 
     inner class ProductGroupedViewHolder(private val binding: ListItemHomeProductGroupedBinding) :
