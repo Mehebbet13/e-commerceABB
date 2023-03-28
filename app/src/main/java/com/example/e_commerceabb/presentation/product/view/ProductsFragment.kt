@@ -71,9 +71,9 @@ class ProductsFragment : Fragment() {
         binding.rvProducts.adapter = productAdapter
         viewModel.products.observe(viewLifecycleOwner) {
             productAdapter?.setData(it.reversed())
-            productAdapter?.itemClickListener = {
+            productAdapter?.itemClickListener = { itemNo ->
                 val bundle = bundleOf(
-                    Constants.ITEM_NO to it[0].itemNo
+                    Constants.ITEM_NO to itemNo
                 )
                 findNavController().navigate(
                     R.id.action_productsFragment_to_productDetailFragment,
@@ -81,7 +81,5 @@ class ProductsFragment : Fragment() {
                 )
             }
         }
-
     }
-
 }

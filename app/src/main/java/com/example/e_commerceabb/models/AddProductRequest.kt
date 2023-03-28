@@ -26,5 +26,5 @@ data class AddProductRequest(
     @SerializedName("userId")
     val userId: String? = null,
     @SerializedName("quantity")
-    val quantity: Int? = null
+    val quantity: Int? = 20
 )

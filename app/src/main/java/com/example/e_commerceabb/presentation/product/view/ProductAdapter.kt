@@ -3,7 +3,6 @@ package com.example.e_commerceabb.presentation.product.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.ListItemHomeProductGroupedBinding
 import com.example.e_commerceabb.databinding.ListItemProductBinding
 import com.example.e_commerceabb.models.ProductResponse
@@ -13,7 +12,7 @@ import com.example.e_commerceabb.utils.load
 
 class ProductAdapter(val isGrouped: Boolean) :
     BaseAdapter<ProductResponse, RecyclerView.ViewHolder>() {
-    var itemClickListener: (() -> Unit)? = null
+    var itemClickListener: ((itemNo: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,9 +32,6 @@ class ProductAdapter(val isGrouped: Boolean) :
         } else {
             (holder as ProductViewHolder).bind(list[position])
         }
-        holder.itemView.setOnClickListener {
-            itemClickListener?.invoke()
-        }
     }
 
     inner class ProductGroupedViewHolder(private val binding: ListItemHomeProductGroupedBinding) :
@@ -47,7 +43,10 @@ class ProductAdapter(val isGrouped: Boolean) :
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-                  imgProduct.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
+                imgProduct.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
+                productRoot.setOnClickListener {
+                    item.itemNo.let { it1 -> itemClickListener?.invoke(it1) }
+                }
             }
         }
     }
@@ -61,7 +60,10 @@ class ProductAdapter(val isGrouped: Boolean) :
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-                productImage.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
+                productImage.load(item.imageUrls?.get(0) ?: EMPTY)
+                productRoot.setOnClickListener {
+                    item.itemNo.let { it1 -> itemClickListener?.invoke(it1) }
+                }
             }
         }
     }

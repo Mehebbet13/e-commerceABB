@@ -43,6 +43,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         observeCartProducts()
         setListeners()
         observePlaceOrder()
+        observeDeleteCart()
     }
 
     private fun observeCartProducts() {
@@ -68,7 +69,23 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             when (it) {
                 is Resource.Success -> {
                     viewModel.deleteCart()
-                    viewModel.getCartProducts()
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun observeDeleteCart() {
+        viewModel.deleted.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    findNavController().navigate(R.id.nav_orders)
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -88,7 +105,8 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         binding.btnBuyNow.setOnClickListener {
             val customerId = viewModel.cartProducts.value?.data?.customerId?.id ?: EMPTY
             val email = viewModel.cartProducts.value?.data?.customerId?.email ?: EMPTY
-            val request = PlaceOrderRequest(customerId = customerId, email = email)
+            val products = viewModel.cartProducts.value?.data
+            val request = PlaceOrderRequest(customerId = customerId, email = email, products = products, status = "not shipped")
             viewModel.placeOrders(request)
         }
     }
@@ -96,12 +114,14 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     private fun setBottomSheet() {
         val tv = TypedValue()
         if (requireActivity().theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            val actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
+            val actionBarHeight =
+                TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
             val param = binding.checkoutBottomSheet.layoutParams as ConstraintLayout.LayoutParams
             param.setMargins(0, 0, 0, actionBarHeight - 16)
             binding.checkoutBottomSheet.layoutParams = param
         }
     }
+
     private fun setAdapterData(data: CartProductsResponse) {
         val cartData = data.products
         cartData.forEach { product ->
