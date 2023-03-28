@@ -154,6 +154,9 @@
         android:id="@+id/productsFragment"
         android:name="com.example.e_commerceabb.presentation.product.view.ProductsFragment"
         android:label="ProductsFragment" >
+        <argument
+            android:name="itemNo"
+            app:argType="string" />
         <action
             android:id="@+id/action_productsFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />

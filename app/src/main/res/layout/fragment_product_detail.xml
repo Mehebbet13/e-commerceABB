@@ -69,7 +69,7 @@
                 android:fontFamily="@font/nunito_medium"
                 android:maxLines="1"
                 android:textColor="@color/primaryDark"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabLayoutProduct"
@@ -81,11 +81,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:ellipsize="end"
                 android:fontFamily="@font/nunito_medium"
-                android:maxLines="1"
                 android:textColor="@color/primaryDark"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/productDetailTitle"
@@ -101,13 +99,13 @@
                 android:fontFamily="@font/nunito_bold"
                 android:maxLines="1"
                 android:textColor="@color/primaryDark"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/productDetailSubtitle"
                 tools:text="600$" />
 
             <TextView
-                android:id="@+id/productDetailPrice"
+                android:id="@+id/productDetailPreviousPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -116,7 +114,7 @@
                 android:fontFamily="@font/nunito_medium"
                 android:maxLines="1"
                 android:textColor="@color/primaryDark"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/productDetailCurrentPrice"
                 app:layout_constraintTop_toBottomOf="@id/productDetailSubtitle"
                 tools:text="600$" />
@@ -125,10 +123,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0.5dp"
                 android:background="@color/secondary"
-                app:layout_constraintBottom_toBottomOf="@id/productDetailPrice"
-                app:layout_constraintEnd_toEndOf="@id/productDetailPrice"
-                app:layout_constraintStart_toStartOf="@id/productDetailPrice"
-                app:layout_constraintTop_toTopOf="@id/productDetailPrice" />
+                app:layout_constraintBottom_toBottomOf="@id/productDetailPreviousPrice"
+                app:layout_constraintEnd_toEndOf="@id/productDetailPreviousPrice"
+                app:layout_constraintStart_toStartOf="@id/productDetailPreviousPrice"
+                app:layout_constraintTop_toTopOf="@id/productDetailPreviousPrice" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAddToCart"

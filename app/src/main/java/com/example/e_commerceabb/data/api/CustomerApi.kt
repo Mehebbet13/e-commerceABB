@@ -2,10 +2,7 @@ package com.example.e_commerceabb.data.api
 
 import com.example.e_commerceabb.models.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface CustomerApi {
     @POST("customers")
@@ -41,4 +38,14 @@ interface CustomerApi {
 
     @GET("catalog")
     suspend fun getCatalog(): Response<ArrayList<CatalogResponse>>
+
+    @GET("products/{itemNo}")
+    suspend fun getProductDetail(
+        @Path("itemNo") itemNo: String
+    ): Response<ProductDetailResponse>
+
+    @PUT("cart/{productId}")
+    suspend fun addToCard(
+        @Path("productId") productId: String
+    ): Response<CardResponse>
 }

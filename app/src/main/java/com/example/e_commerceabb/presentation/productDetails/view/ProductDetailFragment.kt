@@ -1,24 +1,33 @@
 package com.example.e_commerceabb.presentation.productDetails.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.FragmentProductDetailBinding
-import com.example.e_commerceabb.models.AboutAppData
 import com.example.e_commerceabb.models.ProductDetailPagerData
-import com.example.e_commerceabb.presentation.onboarding.adapter.AboutAppAdapter
+import com.example.e_commerceabb.presentation.productDetails.viewmodel.ProductDetailsViewModel
+import com.example.e_commerceabb.utils.Constants.EMPTY
 import com.example.e_commerceabb.utils.Constants.INDEX
+import com.example.e_commerceabb.utils.Constants.ITEM_NO
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
     private var currentItem = INDEX
     private var viewPager2: ViewPager2? = null
     private val productDetailPagerDataList = arrayListOf<ProductDetailPagerData>()
+    private val viewModel: ProductDetailsViewModel by viewModels({ this })
+    private val itemNO by lazy { arguments?.getString(ITEM_NO, null) }
+    var id: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,12 +41,25 @@ class ProductDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setTitle()
         setViewPager()
+        viewModel.getProductDetails(itemNO ?: EMPTY)
         binding.toolbar.setNavigationOnClickListener {
             activity?.onBackPressed()
         }
+        viewModel.productDetail.observe(viewLifecycleOwner) {
+            binding.productDetailTitle.text = it.name
+            binding.productDetailSubtitle.text = it.description
+            binding.productDetailCurrentPrice.text = "${it.currentPrice} ${"$"}"
+            binding.productDetailPreviousPrice.text = "${it.previousPrice} ${"$"}"
+            id = it.id
+        }
+        binding.btnAddToCart.setOnClickListener {
+            Log.i("ayy","$id")
+                viewModel.addToCard(id?: EMPTY)
+
+        }
     }
 
-    fun setTitle() {
+    private fun setTitle() {
         binding.specifications.productTxt.setText(R.string.specifications)
         binding.reviewLayout.productTxt.setText(R.string.reviews)
         binding.questionsLayout.productTxt.setText(R.string.questions)
