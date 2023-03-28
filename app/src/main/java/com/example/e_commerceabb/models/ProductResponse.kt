@@ -30,8 +30,18 @@ data class ProductResponse(
     val brand: String? = null,
     @SerializedName("myCustomParam")
     val myCustomParam: String? = null,
+    @SerializedName("someOtherFeature")
+    val someOtherFeature: String,
+    @SerializedName("size")
+    val size: String,
+    @SerializedName("ram")
+    val ram: String,
+    @SerializedName("weight")
+    val weight: String,
     @SerializedName("itemNo")
-    val itemNo: String? = null,
+    val itemNo: String,
+    @SerializedName("__v")
+    val v: Int,
     @SerializedName("date")
-    val date: String? = null
+    val date: String
 )
