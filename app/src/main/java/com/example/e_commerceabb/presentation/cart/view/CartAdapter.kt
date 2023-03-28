@@ -41,6 +41,7 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartProductsViewHolder>() {
             binding.productImage.load(order.imageUrl)
             binding.minus.setOnClickListener {
                 onMinusClick?.invoke(order.id)
+                notifyItemRangeRemoved(orders.indexOf(order), orders.size - 1)
             }
             binding.plus.setOnClickListener {
                 count++
@@ -48,6 +49,7 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartProductsViewHolder>() {
             }
             binding.deleteButton.setOnClickListener {
                 onDeleteClick?.invoke(order.id)
+                notifyItemRangeRemoved(orders.indexOf(order), orders.size - 1)
             }
         }
     }

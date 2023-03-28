@@ -70,7 +70,7 @@ class ProductsFragment : Fragment() {
         }
         binding.rvProducts.adapter = productAdapter
         viewModel.products.observe(viewLifecycleOwner) {
-            productAdapter?.setData(it)
+            productAdapter?.setData(it.reversed())
             productAdapter?.itemClickListener = {
                 val bundle = bundleOf(
                     Constants.ITEM_NO to it[0].itemNo

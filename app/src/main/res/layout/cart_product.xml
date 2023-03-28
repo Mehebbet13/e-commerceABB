@@ -19,6 +19,7 @@
             android:id="@+id/productImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             android:src="@drawable/rectangle_14" />
     </androidx.cardview.widget.CardView>
 

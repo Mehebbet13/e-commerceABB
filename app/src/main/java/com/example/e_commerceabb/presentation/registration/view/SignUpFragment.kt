@@ -40,7 +40,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         setListeners()
         setInputs()
         handleSignUpButton()
-        handleRememberMe()
         binding.apply {
             firstName.addTextChangedListener {
                 setInputs()
@@ -155,6 +154,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
             findNavController().navigateUp()
         }
         binding.btnContinue.setOnClickListener {
+            handleRememberMe()
             val bundle = bundleOf(
                 Constants.FIRST_NAME to binding.firstName.text.toString(),
                 Constants.LAST_NAME to binding.lastName.text.toString(),

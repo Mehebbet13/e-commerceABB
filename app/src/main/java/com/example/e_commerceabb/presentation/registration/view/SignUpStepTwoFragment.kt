@@ -7,7 +7,6 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -104,11 +103,19 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
                         requireContext(),
                         it.message,
                         Toast.LENGTH_SHORT
-                    ).show()                }
+                    ).show()
+                }
             }
         }
     }
+
     private fun handleRememberMe() {
+        val sharedPref =
+            context?.getSharedPreferences(Constants.MY_PREFS, Context.MODE_PRIVATE)
+        val isUserRegistered = sharedPref?.getBoolean(Constants.IS_USER_REGISTERED, false)
+        if (isUserRegistered != null) {
+            binding.rememberMeCb.isChecked = isUserRegistered
+        }
         binding.rememberMeCb.setOnCheckedChangeListener { _, _ ->
             if (binding.rememberMeCb.isChecked) {
                 val sharedPreferences =
@@ -121,6 +128,7 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
             }
         }
     }
+
     private fun observeLogin() {
         viewModel.login.observe(viewLifecycleOwner) {
             when (it) {
@@ -133,7 +141,8 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
                         requireContext(),
                         it.message,
                         Toast.LENGTH_SHORT
-                    ).show()                }
+                    ).show()
+                }
             }
         }
     }

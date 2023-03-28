@@ -4,12 +4,18 @@ import com.example.e_commerceabb.models.FilteredResponse
 import com.example.e_commerceabb.models.ProductDetailResponse
 import com.example.e_commerceabb.models.ProductResponse
 import com.example.e_commerceabb.models.SearchRequest
+import com.example.e_commerceabb.models.*
 import retrofit2.Response
 import retrofit2.http.*
 
 interface ProductsApi {
     @GET("products")
     suspend fun getProducts(): Response<ArrayList<ProductResponse>>
+
+    @POST("products")
+    suspend fun addProduct(
+        @Body request: AddProductRequest
+    ): Response<ProductResponse>
 
     @GET("products/{itemNo}")
     suspend fun getProductDetail(
@@ -18,7 +24,7 @@ interface ProductsApi {
 
     @GET("products/filter")
     suspend fun getFilterProduct(
-        @Query("querystring") queryString: String
+        @Query("userId") userId: String
     ): Response<FilteredResponse>
 
     @POST("products/search")

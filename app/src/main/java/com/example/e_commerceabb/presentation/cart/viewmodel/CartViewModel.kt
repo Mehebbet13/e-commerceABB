@@ -6,19 +6,37 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.data.repository.CartProductsRepositoryImpl
-import com.example.e_commerceabb.models.AddProductToCartRequest
-import com.example.e_commerceabb.models.CartProductsResponse
+import com.example.e_commerceabb.data.repository.CustomerOrdersRepositoryImpl
+import com.example.e_commerceabb.models.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CartViewModel @Inject constructor(private val repository: CartProductsRepositoryImpl) :
+class CartViewModel @Inject constructor(
+    private val repository: CartProductsRepositoryImpl,
+    private val orderRepository: CustomerOrdersRepositoryImpl
+) :
     ViewModel() {
 
     private val _cartProducts = MutableLiveData<Resource<CartProductsResponse>>()
     val cartProducts: LiveData<Resource<CartProductsResponse>>
         get() = _cartProducts
+
+    private val _orders = MutableLiveData<Resource<CreateOrderResponse>>()
+    val orders: LiveData<Resource<CreateOrderResponse>>
+        get() = _orders
+
+    fun placeOrders(request: PlaceOrderRequest) {
+        try {
+            viewModelScope.launch {
+                val response = orderRepository.placeOrders(request)
+                _orders.postValue(response)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     // all products added to cart
     fun getCartProducts() {
@@ -89,6 +107,7 @@ class CartViewModel @Inject constructor(private val repository: CartProductsRepo
             e.printStackTrace()
         }
     }
+
     fun deleteCart() {
         try {
             viewModelScope.launch {

@@ -1,10 +1,12 @@
 package com.example.e_commerceabb.presentation.cart.view
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,11 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.databinding.FragmentCartBinding
-import com.example.e_commerceabb.models.AddProductToCartRequest
-import com.example.e_commerceabb.models.CartProductsRequest
-import com.example.e_commerceabb.models.CartProductsResponse
-import com.example.e_commerceabb.models.Order
+import com.example.e_commerceabb.models.*
 import com.example.e_commerceabb.presentation.cart.viewmodel.CartViewModel
+import com.example.e_commerceabb.utils.Constants.EMPTY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,17 +38,37 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setBottomSheet()
         viewModel.getCartProducts()
         observeCartProducts()
         setListeners()
+        observePlaceOrder()
     }
 
     private fun observeCartProducts() {
         viewModel.cartProducts.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
+                    cartProductList.clear()
                     it.data?.let { data -> setAdapterData(data) }
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun observePlaceOrder() {
+        viewModel.orders.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    viewModel.deleteCart()
+                    viewModel.getCartProducts()
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -65,22 +85,47 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
+        binding.btnBuyNow.setOnClickListener {
+            val customerId = viewModel.cartProducts.value?.data?.customerId?.id ?: EMPTY
+            val email = viewModel.cartProducts.value?.data?.customerId?.email ?: EMPTY
+            val request = PlaceOrderRequest(customerId = customerId, email = email)
+            viewModel.placeOrders(request)
+        }
     }
 
+    private fun setBottomSheet() {
+        val tv = TypedValue()
+        if (requireActivity().theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            val actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
+            val param = binding.checkoutBottomSheet.layoutParams as ConstraintLayout.LayoutParams
+            param.setMargins(0, 0, 0, actionBarHeight - 16)
+            binding.checkoutBottomSheet.layoutParams = param
+        }
+    }
     private fun setAdapterData(data: CartProductsResponse) {
         val cartData = data.products
         cartData.forEach { product ->
             val order = Order(
-                product.id,
+                product.product.id,
                 product.product.imageUrls[0],
                 product.product.name,
                 "US $${product.product.currentPrice}",
-                count = product.cartQuantity
+                count = product.cartQuantity,
+                priceDouble = product.product.currentPrice.toDouble()
             )
             cartProductList.add(order)
         }
         setAdapter()
         adapter.setData(cartProductList)
+        setProductPrice()
+    }
+
+    private fun setProductPrice() {
+        var price = 0.0
+        cartProductList.forEach {
+            price += it.priceDouble.times(it.count)
+        }
+        binding.productPrice.text = "US $$price"
     }
 
     private fun setAdapter() {

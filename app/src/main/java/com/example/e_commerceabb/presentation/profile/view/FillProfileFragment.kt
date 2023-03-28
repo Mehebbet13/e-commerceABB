@@ -2,7 +2,6 @@ package com.example.e_commerceabb.presentation.profile.view
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
-import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -16,7 +15,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
@@ -146,6 +144,7 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
 
     private fun handleAdminButtons() {
         binding.seeMyProducts.setOnClickListener {
+            findNavController().navigate(R.id.addedProductsFragment)
         }
         binding.addNewProduct.setOnClickListener {
             findNavController().navigate(R.id.action_fillProfileFragment_to_addProductFragment)

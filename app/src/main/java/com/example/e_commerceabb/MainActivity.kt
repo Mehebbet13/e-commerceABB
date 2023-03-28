@@ -33,10 +33,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             changeVisibilityOfBottomMenu(destination.id)
             when (destination.id) {
-                R.id.nav_home -> {
-                    window?.navigationBarColor = ContextCompat.getColor(this, R.color.main)
-                }
-                R.id.nav_profile -> {
+                R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders, R.id.productsFragment, R.id.productDetailFragment ->{
                     handleAppBarsColor(R.color.main)
                 }
                 else -> {
@@ -54,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeVisibilityOfBottomMenu(destinationId: Int) {
         when (destinationId) {
-            R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders ->
+            R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders, R.id.productsFragment, R.id.productDetailFragment ->
                 binding.bottomNav.isVisible = true
             else -> binding.bottomNav.isVisible = false
         }
