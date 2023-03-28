@@ -73,6 +73,17 @@
     <string name="track_order">Track order</string>
     <string name="in_delivery">In delivery</string>
     <string name="buy_again">Buy again</string>
+    <string name="checkout">Checkout</string>
+    <string name="total_price">Total price</string>
+    <string name="add_new_product">Add new product</string>
+    <string name="my_products">My products</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="brand">Brand</string>
+    <string name="category">Category</string>
+    <string name="deactivate">Deactivate</string>
+    <string name="statistics">Statistics</string>
     <string name="buy_now">Buy now</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="products">Products</string>

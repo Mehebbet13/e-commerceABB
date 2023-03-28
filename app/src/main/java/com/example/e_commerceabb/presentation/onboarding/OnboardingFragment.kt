@@ -1,10 +1,12 @@
 package com.example.e_commerceabb.presentation.onboarding
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -37,7 +39,6 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
                 delay(1800)
                 activity?.window?.navigationBarColor = requireContext().getColor(R.color.main)
                 activity?.window?.statusBarColor = requireContext().getColor(R.color.main)
-                delay(600)
                 navigateToWelcomeScreen()
             }
         }

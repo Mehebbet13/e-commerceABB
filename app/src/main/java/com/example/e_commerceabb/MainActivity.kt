@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.example.e_commerceabb.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,12 +38,10 @@ class MainActivity : AppCompatActivity() {
                     window?.navigationBarColor = ContextCompat.getColor(this, R.color.main)
                 }
                 R.id.fillProfileFragment -> {
-                    window?.navigationBarColor = ContextCompat.getColor(this, R.color.main)
+                    handleAppBarsColor(R.color.main)
                 }
                 else -> {
-                    window.navigationBarColor = applicationContext.getColor(R.color.transparent)
-                    window.statusBarColor = applicationContext.getColor(R.color.transparent)
-                    window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    handleAppBarsColor(R.color.transparent)
                 }
             }
         }
@@ -62,6 +58,12 @@ class MainActivity : AppCompatActivity() {
 //                else -> it.onNavDestinationSelected(navController) || super.onOptionsItemSelected(it)
 //            }
 //        }
+    }
+
+    private fun handleAppBarsColor(color: Int) {
+        window.navigationBarColor = applicationContext.getColor(color)
+        window.statusBarColor = applicationContext.getColor(R.color.transparent)
+        window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
     private fun changeVisibilityOfBottomMenu(destinationId: Int) {

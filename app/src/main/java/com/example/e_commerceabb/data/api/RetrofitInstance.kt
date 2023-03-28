@@ -47,6 +47,12 @@ class RetrofitInstance {
 
     @Singleton
     @Provides
+    fun getCartProductAPI(retrofit: Retrofit): CartProductApi {
+        return retrofit.create(CartProductApi::class.java)
+    }
+
+    @Singleton
+    @Provides
     fun getCatalogApi(retrofit: Retrofit): CatalogApi {
         return retrofit.create(CatalogApi::class.java)
     }

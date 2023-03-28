@@ -20,6 +20,10 @@ class FillProfileViewModel @Inject constructor(private val repository: CustomerR
     val customer: LiveData<Resource<GetCustomerResponse>>
         get() = _customer
 
+    private val _isAdmin = MutableLiveData<Boolean>()
+    val isAdmin: LiveData<Boolean>
+        get() = _isAdmin
+
     fun updateCustomer(request: UpdateCustomerRequest) {
         try {
             viewModelScope.launch {
@@ -40,5 +44,9 @@ class FillProfileViewModel @Inject constructor(private val repository: CustomerR
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun setIsAdmin(isAdmin: Boolean) {
+        _isAdmin.postValue(isAdmin)
     }
 }

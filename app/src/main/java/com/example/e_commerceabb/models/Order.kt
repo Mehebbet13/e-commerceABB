@@ -9,5 +9,6 @@ data class Order(
     val price: String,
     val buttonName: String = EMPTY,
     val status: String = EMPTY,
-    val productId: String = EMPTY
+    val productId: String = EMPTY,
+    val count: Int = 0
 )
