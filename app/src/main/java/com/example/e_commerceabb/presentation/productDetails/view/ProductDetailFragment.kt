@@ -11,7 +11,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.databinding.FragmentProductDetailBinding
-import com.example.e_commerceabb.models.ProductDetailPagerData
 import com.example.e_commerceabb.presentation.productDetails.viewmodel.ProductDetailsViewModel
 import com.example.e_commerceabb.utils.Constants.EMPTY
 import com.example.e_commerceabb.utils.Constants.INDEX
@@ -24,12 +23,12 @@ class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
     private var currentItem = INDEX
     private var viewPager2: ViewPager2? = null
-    private val productDetailPagerDataList = arrayListOf<ProductDetailPagerData>()
     private val viewModel: ProductDetailsViewModel by viewModels({ this })
     private val filteredAdapter by lazy { ProductDetailAdapter() }
     private val itemNO by lazy { arguments?.getString(ITEM_NO, null) }
-    var id: String? = null
     var name: String? = null
+    private val imgList: ArrayList<String> = arrayListOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,19 +42,25 @@ class ProductDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setTitle()
-        setViewPager()
         viewModel.getProductDetails(itemNO ?: EMPTY)
         binding.toolbar.setNavigationOnClickListener {
             activity?.onBackPressed()
         }
         setAdapter()
-        viewModel.productDetail.observe(viewLifecycleOwner) {
-            binding.productDetailTitle.text = it.name
-            binding.productDetailSubtitle.text = it.description
-            binding.productDetailCurrentPrice.text = "${it.currentPrice} ${"$"}"
-            binding.productDetailPreviousPrice.text = "${it.previousPrice} ${"$"}"
-            id = it.id
-            viewModel.getFilteredProduct(it.name)
+        viewModel.productDetail.observe(viewLifecycleOwner) { item ->
+            binding.productDetailTitle.text = item.name
+            binding.productDetailSubtitle.text = item.description
+            binding.productDetailCurrentPrice.text = "${item.currentPrice} ${"$"}"
+            binding.productDetailPreviousPrice.text = "${item.previousPrice} ${"$"}"
+            binding.btnAddToCart.setOnClickListener {
+                viewModel.addToCard(item.id ?: EMPTY)
+            }
+//            imgList.clear()
+            item.imageUrls?.let {
+                imgList.addAll(it)
+            }
+            setViewPager()
+            viewModel.getFilteredProduct(item.name ?: EMPTY)
         }
         viewModel.filteredProduct.observe(viewLifecycleOwner) {
             when (it) {
@@ -70,9 +75,7 @@ class ProductDetailFragment : Fragment() {
                 }
             }
         }
-        binding.btnAddToCart.setOnClickListener {
-            viewModel.addToCard(id ?: EMPTY)
-        }
+
     }
 
     private fun setTitle() {
@@ -82,21 +85,6 @@ class ProductDetailFragment : Fragment() {
         binding.specifications.count.visibility = View.GONE
     }
 
-    private fun setAdapterData() {
-        val step1 = ProductDetailPagerData(
-            R.drawable.rectangle_14
-        )
-        val step2 = ProductDetailPagerData(
-            R.drawable.onboarding_step3_image
-        )
-        val step3 = ProductDetailPagerData(
-            R.drawable.onboarding_step3_image
-        )
-        val dataList = arrayListOf(step1, step2, step3)
-        productDetailPagerDataList.clear()
-        productDetailPagerDataList.addAll(dataList)
-    }
-
     private fun setAdapter() {
         binding.productDetailRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -104,8 +92,7 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun setViewPager() {
-        setAdapterData()
-        val adapter = ProductDetailViewPagerAdapter(productDetailPagerDataList)
+        val adapter = ProductDetailViewPagerAdapter(imgList)
         viewPager2 = binding.viewPagerProduct
         viewPager2?.adapter = adapter
         viewPager2?.setCurrentItem(currentItem, true)

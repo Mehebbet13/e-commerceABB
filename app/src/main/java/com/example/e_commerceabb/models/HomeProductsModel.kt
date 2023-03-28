@@ -1,7 +1,7 @@
 package com.example.e_commerceabb.models
 
 data class HomeProductsModel(
-    val image: Int,
+    val image: String,
     val discountLAbel: String,
     val title: String,
     val subtitle: String,

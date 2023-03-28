@@ -6,44 +6,56 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="4dp">
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="8dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgProduct"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageCard"
         android:layout_width="168dp"
         android:layout_height="168dp"
-        android:src="@drawable/congratulation_image"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/discountLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/backgournd_discount"
-        android:fontFamily="@font/nunito_bold"
-        android:paddingStart="8dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="4dp"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/imgProduct"
-        app:layout_constraintTop_toTopOf="@id/imgProduct"
-        tools:text="-10$" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/rectangle_14" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:src="@drawable/ic_heart"
-        app:layout_constraintBottom_toBottomOf="@id/discountLabel"
-        app:layout_constraintStart_toStartOf="@id/imgProduct"
-        app:layout_constraintTop_toTopOf="@id/discountLabel" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/discountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/backgournd_discount"
+            android:fontFamily="@font/nunito_bold"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/image"
+            tools:text="-10$" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_heart"
+            app:layout_constraintBottom_toBottomOf="@id/discountLabel"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/discountLabel" />
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/titleProduct"
@@ -54,9 +66,9 @@
         android:maxLines="1"
         android:textColor="@color/primaryDark"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/imgProduct"
-        app:layout_constraintStart_toStartOf="@id/imgProduct"
-        app:layout_constraintTop_toBottomOf="@id/imgProduct"
+        app:layout_constraintEnd_toEndOf="@id/imageCard"
+        app:layout_constraintStart_toStartOf="@id/imageCard"
+        app:layout_constraintTop_toBottomOf="@id/imageCard"
         tools:text="High quality" />
 
     <TextView
@@ -68,8 +80,8 @@
         android:maxLines="1"
         android:textColor="@color/secondary"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@id/imgProduct"
-        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintEnd_toEndOf="@id/imageCard"
+        app:layout_constraintStart_toStartOf="@id/imageCard"
         app:layout_constraintTop_toBottomOf="@id/titleProduct"
         tools:text="High" />
 
@@ -80,7 +92,7 @@
         android:fontFamily="@font/nunito_bold"
         android:textColor="@color/primaryDark"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintStart_toStartOf="@id/imageCard"
         app:layout_constraintTop_toBottomOf="@id/subtitleProduct"
         tools:text="544$" />
 
@@ -91,7 +103,7 @@
         android:fontFamily="@font/nunito_regular"
         android:textColor="@color/secondary"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/imgProduct"
+        app:layout_constraintStart_toStartOf="@id/imageCard"
         app:layout_constraintTop_toBottomOf="@id/discountAmountProduct"
         tools:text="600$" />
 

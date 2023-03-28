@@ -8,6 +8,7 @@ import com.example.e_commerceabb.databinding.ListItemHomeProductBinding
 import com.example.e_commerceabb.databinding.ListItemProductBinding
 import com.example.e_commerceabb.models.ProductResponse
 import com.example.e_commerceabb.utils.BaseAdapter
+import com.example.e_commerceabb.utils.Constants
 import com.example.e_commerceabb.utils.load
 
 class ProductDetailAdapter() :
@@ -27,21 +28,6 @@ class ProductDetailAdapter() :
         }
     }
 
-    inner class ProductGroupedViewHolder(private val binding: ListItemHomeProductBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ProductResponse) {
-            with(binding) {
-                titleProduct.text = item.name
-                subtitleProduct.text = item.description
-                discountLabel.text = "-10%"
-                discountAmountProduct.text = "${item.previousPrice} ${"$"}"
-                amountProduct.text = "${item.previousPrice} ${"$"}"
-                imgProduct.load(R.drawable.rectangle_14)
-                // imgProduct.load(item.)
-            }
-        }
-    }
-
     inner class ProductViewHolder(private val binding: ListItemHomeProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductResponse) {
@@ -51,7 +37,7 @@ class ProductDetailAdapter() :
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-                imgProduct.load(R.drawable.rectangle_14)
+                productImage.load(item.imageUrls?.getOrNull(0) ?: Constants.EMPTY)
             }
         }
     }

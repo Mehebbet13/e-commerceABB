@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.databinding.ProductDetailPagerListBinding
-import com.example.e_commerceabb.models.ProductDetailPagerData
+import com.example.e_commerceabb.utils.load
 
-class ProductDetailViewPagerAdapter(private val data: ArrayList<ProductDetailPagerData>) :
+class ProductDetailViewPagerAdapter(private val data: ArrayList<String>) :
     RecyclerView.Adapter<ProductDetailViewPagerAdapter.ProductDetailPagerHolder>() {
     inner class ProductDetailPagerHolder(private val binding: ProductDetailPagerListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItem(stepData: ProductDetailPagerData) {
-            binding.productImage.setBackgroundResource(stepData.image)
+        fun bindItem(img:String) {
+            binding.productImage.load(img)
         }
     }
 
