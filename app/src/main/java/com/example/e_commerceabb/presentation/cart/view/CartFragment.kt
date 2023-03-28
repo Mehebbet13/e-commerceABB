@@ -24,7 +24,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     lateinit var binding: FragmentCartBinding
     private val adapter by lazy { CartAdapter() }
 
-    var cartProductList = mutableListOf<Order>()
+    private var cartProductList = mutableListOf<Order>()
     private val viewModel: CartViewModel by viewModels({ this })
 
     override fun onCreateView(
