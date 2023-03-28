@@ -1,6 +1,7 @@
 package com.example.e_commerceabb.data.api
 
 import com.example.e_commerceabb.models.AddProductToCartRequest
+import com.example.e_commerceabb.models.CardResponse
 import com.example.e_commerceabb.models.CartProductsResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -36,4 +37,9 @@ interface CartProductApi {
 
     @DELETE("cart")
     suspend fun deleteCart(): Response<String>
+
+    @PUT("cart/{productId}")
+    suspend fun addToCard(
+        @Path("productId") productId: String
+    ): Response<CardResponse>
 }

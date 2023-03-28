@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.e_commerceabb.data.repository.CartProductsRepositoryImpl
 import com.example.e_commerceabb.data.repository.CustomerRepositoryImpl
 import com.example.e_commerceabb.data.repository.ProductRepositoryImpl
-import com.example.e_commerceabb.domain.repository.CustomerRepository
 import com.example.e_commerceabb.models.CardResponse
 import com.example.e_commerceabb.models.ProductDetailResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductDetailsViewModel @Inject constructor(
     private val productRepository: ProductRepositoryImpl,
-    private val repository: CustomerRepositoryImpl
+    private val repository: CustomerRepositoryImpl,
+    private val cardRepository: CartProductsRepositoryImpl
 ) : ViewModel() {
 
     private val _productDetail = MutableLiveData<ProductDetailResponse>()
@@ -44,7 +45,7 @@ class ProductDetailsViewModel @Inject constructor(
     fun addToCard(itemID: String) {
         try {
             viewModelScope.launch {
-                val response = repository.addToCard(itemID)
+                val response = cardRepository.addToCard(itemID)
                 response.data.let {
                     _card.postValue(it)
                 }
