@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -38,7 +39,18 @@ class HomeFragment : Fragment() {
         binding.rvHome.adapter = homeAdapter
         viewModel.getProducts()
         viewModel.getCategory()
+        binding.searchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.search(query)
+                return false
+            }
 
+            override fun onQueryTextChange(query: String): Boolean {
+                viewModel.search(query)
+                return false
+            }
+        })
         viewModel.productsList.observe(viewLifecycleOwner) { resource ->
             homeAdapter.setList(resource)
         }

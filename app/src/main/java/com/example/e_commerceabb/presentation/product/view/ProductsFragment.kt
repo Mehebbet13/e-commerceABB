@@ -1,7 +1,6 @@
 package com.example.e_commerceabb.presentation.product.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +44,18 @@ class ProductsFragment : Fragment() {
         viewModel.isRefreshing.observe(viewLifecycleOwner) { isRefreshing ->
             binding.progressLayout.root.visibility = if (isRefreshing) View.VISIBLE else View.GONE
         }
+        binding.searchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.search(query)
+                return false
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                viewModel.search(query)
+                return false
+            }
+        })
     }
 
     private fun setAdapter() {

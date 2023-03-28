@@ -9,9 +9,11 @@ import com.example.e_commerceabb.data.repository.CatalogRepositoryImpl
 import com.example.e_commerceabb.data.repository.ProductRepositoryImpl
 import com.example.e_commerceabb.models.HomeCategoryListModel
 import com.example.e_commerceabb.models.HomeProductsListModel
+import com.example.e_commerceabb.models.SearchRequest
 import com.example.e_commerceabb.presentation.home.mapper.HomeUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import retrofit2.http.Query
 import javax.inject.Inject
 
 @HiltViewModel
@@ -51,6 +53,17 @@ class HomeViewModel @Inject constructor(
                 is Resource.Success -> {
                     response.data?.let {
                         _catalog.postValue(mapper.mapCategoryToUiModel(it))
+                    }
+                }
+            }
+        }
+    }
+    fun search(query: String) {
+        viewModelScope.launch {
+            when (val response = productRepository.search(SearchRequest(query))) {
+                is Resource.Success -> {
+                    response.data?.let {
+                        _productsList.postValue(mapper.mapProductsToUiModel(it))
                     }
                 }
             }
