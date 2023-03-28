@@ -3,7 +3,6 @@ package com.example.e_commerceabb
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -33,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             changeVisibilityOfBottomMenu(destination.id)
             when (destination.id) {
-                R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders, R.id.productsFragment, R.id.productDetailFragment ->{
+                R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders, R.id.productsFragment,
+                R.id.productDetailFragment, R.id.addedProductsFragment, R.id.addProductFragment -> {
                     handleAppBarsColor(R.color.main)
                 }
                 else -> {
@@ -51,7 +51,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeVisibilityOfBottomMenu(destinationId: Int) {
         when (destinationId) {
-            R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders, R.id.productsFragment, R.id.productDetailFragment ->
+            R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders, R.id.productsFragment,
+            R.id.productDetailFragment, R.id.addedProductsFragment, R.id.addProductFragment ->
                 binding.bottomNav.isVisible = true
             else -> binding.bottomNav.isVisible = false
         }

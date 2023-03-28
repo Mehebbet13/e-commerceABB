@@ -20,6 +20,8 @@ data class PlaceOrderRequest(
     val paymentInfo: String? = null,
     @SerializedName("shipping")
     val shipping: String? = null,
+    @SerializedName("products")
+    val products: CartProductsResponse? = null,
     @SerializedName("status")
     val status: String? = null
 )

@@ -27,6 +27,10 @@ class CartViewModel @Inject constructor(
     val orders: LiveData<Resource<CreateOrderResponse>>
         get() = _orders
 
+    private val _deleted = MutableLiveData<Resource<DeleteCartResponse>>()
+    val deleted: LiveData<Resource<DeleteCartResponse>>
+        get() = _deleted
+
     fun placeOrders(request: PlaceOrderRequest) {
         try {
             viewModelScope.launch {
@@ -111,7 +115,8 @@ class CartViewModel @Inject constructor(
     fun deleteCart() {
         try {
             viewModelScope.launch {
-                repository.deleteCart()
+                val response = repository.deleteCart()
+                _deleted.postValue(response)
             }
         } catch (e: Exception) {
             e.printStackTrace()
