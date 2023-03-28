@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.R
-import com.example.e_commerceabb.databinding.ListItemHomeProductGroupedBinding
+import com.example.e_commerceabb.databinding.ListItemHomeProductBinding
 import com.example.e_commerceabb.databinding.ListItemProductBinding
 import com.example.e_commerceabb.models.ProductResponse
 import com.example.e_commerceabb.utils.BaseAdapter
@@ -16,7 +16,7 @@ class ProductDetailAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ListItemProductBinding.inflate(inflater, parent, false)
+        val binding = ListItemHomeProductBinding.inflate(inflater, parent, false)
         return ProductViewHolder(binding)
     }
 
@@ -27,7 +27,7 @@ class ProductDetailAdapter() :
         }
     }
 
-    inner class ProductGroupedViewHolder(private val binding: ListItemHomeProductGroupedBinding) :
+    inner class ProductGroupedViewHolder(private val binding: ListItemHomeProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductResponse) {
             with(binding) {
@@ -42,16 +42,16 @@ class ProductDetailAdapter() :
         }
     }
 
-    inner class ProductViewHolder(private val binding: ListItemProductBinding) :
+    inner class ProductViewHolder(private val binding: ListItemHomeProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductResponse) {
             with(binding) {
                 subtitleProduct.text = item.description
-                productName.text = item.name
+                titleProduct.text = item.name
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-                productImage.load(R.drawable.rectangle_14)
+                imgProduct.load(R.drawable.rectangle_14)
             }
         }
     }

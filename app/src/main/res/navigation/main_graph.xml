@@ -18,7 +18,7 @@
         <action
             android:id="@+id/action_onboardingFragment_to_fillProfileFragment"
             app:enterAnim="@anim/slide_up"
-            app:destination="@id/fillProfileFragment" />
+            app:destination="@id/nav_profile" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -56,7 +56,7 @@
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_registerFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -85,7 +85,7 @@
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_signUpStepTwoFragment_to_fillProfileFragment"
-            app:destination="@id/fillProfileFragment" />
+            app:destination="@id/nav_profile" />
     </fragment>
     <fragment
         android:id="@+id/passwordRecoveryFragment"
@@ -116,7 +116,7 @@
             app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/nav_home"
         android:name="com.example.e_commerceabb.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
@@ -128,7 +128,7 @@
             app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fillProfileFragment"
+        android:id="@+id/nav_profile"
         android:name="com.example.e_commerceabb.presentation.profile.view.FillProfileFragment"
         android:label="FillProfileFragment" >
         <action
@@ -141,7 +141,7 @@
             app:destination="@id/addProductFragment" />
     </fragment>
     <fragment
-        android:id="@+id/ordersFragment"
+        android:id="@+id/nav_orders"
         android:name="com.example.e_commerceabb.presentation.orders.view.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" >
@@ -171,7 +171,7 @@
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail" />
     <fragment
-        android:id="@+id/cartFragment"
+        android:id="@+id/nav_cart"
         android:name="com.example.e_commerceabb.presentation.cart.view.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
