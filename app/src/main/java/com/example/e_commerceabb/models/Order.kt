@@ -10,5 +10,6 @@ data class Order(
     val buttonName: String = EMPTY,
     val status: String = EMPTY,
     val productId: String = EMPTY,
-    val count: Int = 0
+    val count: Int = 0,
+    val priceDouble: Double = 0.0
 )

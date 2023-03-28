@@ -46,7 +46,6 @@
         android:id="@+id/checkoutBottomSheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:background="@drawable/checkout_bottom"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"

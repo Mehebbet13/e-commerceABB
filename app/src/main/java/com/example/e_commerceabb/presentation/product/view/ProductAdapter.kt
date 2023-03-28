@@ -8,6 +8,7 @@ import com.example.e_commerceabb.databinding.ListItemHomeProductGroupedBinding
 import com.example.e_commerceabb.databinding.ListItemProductBinding
 import com.example.e_commerceabb.models.ProductResponse
 import com.example.e_commerceabb.utils.BaseAdapter
+import com.example.e_commerceabb.utils.Constants.EMPTY
 import com.example.e_commerceabb.utils.load
 
 class ProductAdapter(val isGrouped: Boolean) :
@@ -46,8 +47,8 @@ class ProductAdapter(val isGrouped: Boolean) :
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-                imgProduct.load(R.drawable.rectangle_14)
-                // imgProduct.load(item.)
+//                imgProduct.load(R.drawable.rectangle_14)
+                imgProduct.load(item.imageUrls?.get(0) ?: EMPTY)
             }
         }
     }
@@ -61,7 +62,7 @@ class ProductAdapter(val isGrouped: Boolean) :
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-                productImage.load(R.drawable.rectangle_14)
+                productImage.load(item.imageUrls?.get(0) ?: EMPTY)
             }
         }
     }

@@ -26,6 +26,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private val viewModel: OrdersViewModel by viewModels({ this })
     private val adapter by lazy { OrdersAdapter() }
     private val adapter1 by lazy { OrdersAdapter() }
+    private val adapter3 by lazy { OrdersAdapter() }
     var ongoingOrdersList = mutableListOf<Order>()
     var completedOrders = mutableListOf<Order>()
     var cancelledOrdersList = mutableListOf<Order>()
@@ -49,7 +50,24 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     }
 
     private fun setAdapterData(data: CustomerOrdersResponse) {
-        val ongoingData = data.filter { it.status == "shipped" && !it.canceled }
+        val completedData = data.filter { it.status == "shipped" && !it.canceled }
+        completedData.forEach {
+            it.products.forEach { product ->
+                val order = Order(
+                    product.id,
+                    product.product.imageUrls[0],
+                    product.product.name,
+                    "US $${product.product.currentPrice}",
+                    getString(R.string.leave_review),
+                    getString(R.string.completed)
+                )
+                completedOrders.add(order)
+            }
+        }
+        setCompletedProductsAdapter()
+        adapter3.setData(completedOrders)
+
+        val ongoingData = data.filter { it.status == "not shipped" && !it.canceled }
         ongoingData.forEach {
             it.products.forEach { product ->
                 val order = Order(
@@ -65,6 +83,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         }
         setOngoingProductsAdapter()
         adapter.setData(ongoingOrdersList)
+
         val cancelledData = data.filter { it.canceled }
         cancelledData.forEach {
             it.products.forEach { product ->
@@ -105,6 +124,12 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         binding.ongoingProductsRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.ongoingProductsRv.adapter = adapter
+    }
+
+    private fun setCompletedProductsAdapter() {
+        binding.ongoingProductsRv.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.ongoingProductsRv.adapter = adapter3
     }
 
     private fun setCancelledProductsAdapter() {

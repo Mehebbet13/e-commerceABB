@@ -31,9 +31,9 @@ class ProductDetailFragment : Fragment() {
     var id: String? = null
     var name: String? = null
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductDetailBinding.inflate(inflater, container, false)
@@ -67,7 +67,6 @@ class ProductDetailFragment : Fragment() {
                             binding.seeAll.visibility = View.GONE
                         }
                     }
-
                 }
             }
         }
@@ -85,13 +84,13 @@ class ProductDetailFragment : Fragment() {
 
     private fun setAdapterData() {
         val step1 = ProductDetailPagerData(
-            R.drawable.rectangle_14,
+            R.drawable.rectangle_14
         )
         val step2 = ProductDetailPagerData(
-            R.drawable.onboarding_step3_image,
+            R.drawable.onboarding_step3_image
         )
         val step3 = ProductDetailPagerData(
-            R.drawable.onboarding_step3_image,
+            R.drawable.onboarding_step3_image
         )
         val dataList = arrayListOf(step1, step2, step3)
         productDetailPagerDataList.clear()

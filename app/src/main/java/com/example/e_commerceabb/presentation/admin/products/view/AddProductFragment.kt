@@ -16,21 +16,36 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.e_commerceabb.R
+import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.databinding.FragmentAddProductBinding
+import com.example.e_commerceabb.models.AddProductRequest
+import com.example.e_commerceabb.presentation.admin.products.viewmodel.AddProductViewModel
+import com.example.e_commerceabb.utils.Jwt
+import com.example.e_commerceabb.utils.TokenManager
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AddProductFragment : Fragment(R.layout.fragment_add_product) {
     lateinit var binding: FragmentAddProductBinding
     private var pickImage = 10
     private val imageList = arrayListOf<String>()
+    private val viewModel: AddProductViewModel by viewModels({ this })
 
     // Create a storage reference from our app
     var storageRef = Firebase.storage
+
+    @Inject
+    lateinit var tokenManager: TokenManager
+
+    private var token: String? = null
+    private var userId: String? = null
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -76,7 +91,31 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         setInputs()
         handleTextChangedListeners()
         addImages()
+        observeProducts()
         storageRef = FirebaseStorage.getInstance()
+        binding.addNewProduct.setOnClickListener {
+            addProduct()
+        }
+
+        token = tokenManager.getToken()
+        userId = token?.let { Jwt.getUserId(it) }
+    }
+
+    private fun observeProducts() {
+        viewModel.addedProduct.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    findNavController().navigate(R.id.addedProductsFragment)
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
     private fun openGallery() {
@@ -142,6 +181,24 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
             binding.addNewProduct.isClickable = false
             binding.addNewProduct.alpha = 0.3f
         }
+    }
+
+    private fun addProduct() {
+        val name = binding.name.text.toString()
+        val description = binding.description.text.toString()
+        val price = binding.price.text.toString().toDouble()
+        val brand = binding.brand.text.toString()
+        val category = binding.category.text.toString()
+        val request = AddProductRequest(
+            name = name,
+            description = description,
+            currentPrice = price,
+            brand = brand,
+            categories = category,
+            imageUrls = imageList,
+            userId = userId
+        )
+        viewModel.addProduct(request)
     }
 
     private fun setInputs() {

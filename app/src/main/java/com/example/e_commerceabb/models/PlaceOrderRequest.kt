@@ -7,7 +7,7 @@ data class PlaceOrderRequest(
     @SerializedName("customerId")
     val customerId: String,
     @SerializedName("deliveryAddress")
-    val deliveryAddress: DeliveryAddress,
+    val deliveryAddress: DeliveryAddress? = null,
     @SerializedName("email")
     val email: String = "saribeg@gmail.com",
     @SerializedName("letterHtml")
@@ -17,9 +17,9 @@ data class PlaceOrderRequest(
     @SerializedName("mobile")
     val mobile: String = "+380630000000",
     @SerializedName("paymentInfo")
-    val paymentInfo: String,
+    val paymentInfo: String? = null,
     @SerializedName("shipping")
-    val shipping: String,
+    val shipping: String? = null,
     @SerializedName("status")
-    val status: String
+    val status: String? = null
 )

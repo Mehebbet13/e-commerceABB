@@ -180,4 +180,9 @@
         android:name="com.example.e_commerceabb.presentation.admin.products.view.AddProductFragment"
         android:label="fragment_add_product"
         tools:layout="@layout/fragment_add_product" />
+    <fragment
+        android:id="@+id/addedProductsFragment"
+        android:name="com.example.e_commerceabb.presentation.admin.products.view.AddedProductsFragment"
+        android:label="fragment_added_products"
+        tools:layout="@layout/fragment_added_products" />
 </navigation>
