@@ -50,8 +50,6 @@ m
 Kapp/src/main/java/com/example/e_commerceabb/models/UpdateCustomerRequest.kt,0/9/09d77de8a831b6e28816a74b1fdf6077d409791f
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-}
-Mapp/src/main/java/com/example/e_commerceabb/presentation/home/HomeFragment.kt,f/f/ffbaa59ffc5b0e34830d2f340402a8e30967d521
 š
 japp/src/main/java/com/example/e_commerceabb/presentation/passwordrecovery/view/PasswordRecoveryFragment.kt,8/f/8f4691a39ca8c074885e8970722ff19e37749b23
 {
