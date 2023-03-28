@@ -12,7 +12,6 @@ import com.example.e_commerceabb.R
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.databinding.FragmentProductDetailBinding
 import com.example.e_commerceabb.models.ProductDetailPagerData
-import com.example.e_commerceabb.models.ProductResponse
 import com.example.e_commerceabb.presentation.productDetails.viewmodel.ProductDetailsViewModel
 import com.example.e_commerceabb.utils.Constants.EMPTY
 import com.example.e_commerceabb.utils.Constants.INDEX
@@ -63,9 +62,9 @@ class ProductDetailFragment : Fragment() {
                 is Resource.Success -> {
                     it.data?.products?.let { item ->
                         filteredAdapter.setData(item)
-                        if(item.isNullOrEmpty()){
-                            binding.similarGoods.visibility=View.GONE
-                            binding.seeAll.visibility=View.GONE
+                        if (item.isNullOrEmpty()) {
+                            binding.similarGoods.visibility = View.GONE
+                            binding.seeAll.visibility = View.GONE
                         }
                     }
 
@@ -103,15 +102,6 @@ class ProductDetailFragment : Fragment() {
         binding.productDetailRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.productDetailRv.adapter = filteredAdapter
-//        filteredAdapter.setData(
-//            listOf(
-//                ProductResponse(
-//                name="sadsfghf",
-//                    description = ""
-//                )
-//            )
-//        )
-
     }
 
     private fun setViewPager() {
