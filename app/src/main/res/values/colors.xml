@@ -13,5 +13,6 @@
     <color name="grey40">#B7B7B7</color>
     <color name="divider">#95A7BB</color>
     <color name="done">#0CA71B</color>
+    <color name="add_image_bg">#101A262C</color>
     <color name="transparent">@android:color/transparent</color>
 </resources>

@@ -3,9 +3,9 @@ package com.example.e_commerceabb.models
 
 import com.google.gson.annotations.SerializedName
 
-data class GetCustomerResponse(
+data class CustomerIdX(
     @SerializedName("avatarUrl")
-    val avatarUrl: String? = null,
+    val avatarUrl: String,
     @SerializedName("date")
     val date: String,
     @SerializedName("email")
@@ -28,10 +28,6 @@ data class GetCustomerResponse(
     val password: String,
     @SerializedName("telephone")
     val telephone: String,
-    @SerializedName("dateOfBirth")
-    val dateOfBirth: String,
-    @SerializedName("fullName")
-    val fullName: String,
     @SerializedName("__v")
     val v: Int
 )

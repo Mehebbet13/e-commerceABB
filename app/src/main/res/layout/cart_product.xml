@@ -22,11 +22,14 @@
             android:src="@drawable/rectangle_14" />
     </androidx.cardview.widget.CardView>
 
+
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/favButton"
+        android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_heart_fill"
+        android:src="@drawable/ic_trash"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,8 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/nunito_bold"
-        android:textAlignment="center"
         android:singleLine="true"
+        android:textAlignment="center"
         android:textColor="@color/primaryDark"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/image"
@@ -58,30 +61,43 @@
         app:layout_constraintTop_toBottomOf="@id/productName"
         tools:text="US $540.00" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAddToCart"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@drawable/button_with_stroke"
-        android:paddingHorizontal="24dp"
-        android:textAllCaps="false"
-        android:textColor="@color/secondary"
-        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image"
-        tools:text="Track order" />
+        app:layout_constraintStart_toEndOf="@id/image">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnBuyNow"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/welcome_button"
-        android:paddingHorizontal="24dp"
-        android:textAllCaps="false"
-        android:textColor="@color/whiteText"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Track order" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:fontFamily="@font/barlow"
+            android:textAlignment="center"
+            android:textColor="@color/primaryDark"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/minus"
+            app:layout_constraintStart_toEndOf="@id/plus"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_minus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

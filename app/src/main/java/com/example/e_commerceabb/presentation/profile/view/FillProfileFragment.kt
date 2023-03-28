@@ -2,6 +2,7 @@ package com.example.e_commerceabb.presentation.profile.view
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -15,6 +16,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
@@ -86,15 +88,16 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handleContinueButton()
         handleAvatar()
         handleInputs()
         observeUpdateCustomer()
         handleEditProfile()
         handleLogOut()
         setListeners()
-//        initView()
-//        viewModel.getCustomer()
+        handleContinueButton()
+        handleAdminButtons()
+        initView()
+        viewModel.getCustomer()
     }
 
     private fun handleLogOut() {
@@ -114,6 +117,8 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
     }
 
     private fun getCustomerData(data: GetCustomerResponse) {
+        viewModel.setIsAdmin(data.isAdmin)
+
         binding.apply {
             progress.visibility = View.GONE
             profile.visibility = View.VISIBLE
@@ -123,7 +128,7 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
                     R.color.transparent
                 )
             )
-            profileAvatarImg.setImageURI(getFileUri(data.avatarUrl))
+            data.avatarUrl?.let { profileAvatarImg.setImageURI(getFileUri(it)) }
             profileAvatarImg.scaleType = ImageView.ScaleType.CENTER_CROP
             profileAvatarImg.setBackgroundResource(R.drawable.rounded_image)
             fullName.setText(data.fullName)
@@ -132,6 +137,18 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
             dateOfBirth.setText(data.dateOfBirth)
             phoneNumber.setText(data.telephone)
             gender.setText(data.gender)
+            if (data.isAdmin) {
+                addNewProduct.visibility = View.VISIBLE
+                seeMyProducts.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun handleAdminButtons() {
+        binding.seeMyProducts.setOnClickListener {
+        }
+        binding.addNewProduct.setOnClickListener {
+            findNavController().navigate(R.id.action_fillProfileFragment_to_addProductFragment)
         }
     }
 
@@ -196,8 +213,10 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
             dateOfBirth.isFocusableInTouchMode = visible
             phoneNumber.isFocusableInTouchMode = visible
             gender.isFocusableInTouchMode = visible
-//            btnSkip.isVisible = visible
+            btnSkip.isVisible = visible
             btnContinue.isVisible = visible
+            addNewProduct.isVisible = !visible
+            seeMyProducts.isVisible = !visible
         }
     }
 
@@ -297,7 +316,7 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
             viewModel.updateCustomer(customerRequest)
         }
         binding.btnSkip.setOnClickListener {
-            findNavController().navigate(R.id.ordersFragment)
+            findNavController().navigate(R.id.cartFragment)
         }
     }
 }
