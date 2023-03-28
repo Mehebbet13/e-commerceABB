@@ -5,6 +5,7 @@ import com.example.e_commerceabb.data.api.CartProductApi
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.domain.repository.CartProductsRepository
 import com.example.e_commerceabb.models.AddProductToCartRequest
+import com.example.e_commerceabb.models.CardResponse
 import com.example.e_commerceabb.models.CartProductsResponse
 import javax.inject.Inject
 
@@ -36,5 +37,9 @@ class CartProductsRepositoryImpl @Inject constructor(private val cartProductApi:
 
     override suspend fun deleteCart(): Resource<String> {
         return safeApiCall { cartProductApi.deleteCart() }
+    }
+
+    override suspend fun addToCard(productId: String): Resource<CardResponse> {
+        return safeApiCall { cartProductApi.addToCard(productId) }
     }
 }

@@ -35,10 +35,4 @@ interface CustomerApi {
     suspend fun products(
         @Body request: NewProductRequest
     ): Resource<ProductResponse>
-
-    @GET("products")
-    suspend fun getProducts(): Response<ArrayList<ProductResponse>>
-
-    @GET("catalog")
-    suspend fun getCatalog(): Response<ArrayList<CatalogResponse>>
 }

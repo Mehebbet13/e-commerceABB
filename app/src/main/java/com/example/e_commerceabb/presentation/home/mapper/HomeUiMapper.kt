@@ -6,6 +6,7 @@ import com.example.e_commerceabb.utils.Constants.EMPTY
 import javax.inject.Inject
 
 class HomeUiMapper @Inject constructor() {
+    var onSeeAllClick: (() -> Unit)? = null
     private fun mapProductsItemToUiModel(
         productList: ArrayList<ProductResponse>
     ): List<HomeProductsModel> {
@@ -17,7 +18,7 @@ class HomeUiMapper @Inject constructor() {
                 discountAmount = "${response.currentPrice} ${"$"}",
                 amount = "${response.previousPrice} ${"$"}",
                 image = R.drawable.rectangle_14
-              //  image = response.imageUrls?.get(1)?:"img/products/men/004.png"
+                //  image = response.imageUrls?.get(1)?:"img/products/men/004.png"
             )
         }
     }
@@ -29,7 +30,10 @@ class HomeUiMapper @Inject constructor() {
             HomeProductsListModel(
                 title = TitleModel(
                     title = "Products",
-                    seeAll = "See all"
+                    seeAll = "See all",
+                    onClick = {
+                        onSeeAllClick?.invoke()
+                    }
                 ),
                 list = mapProductsItemToUiModel(productList)
             )
@@ -54,7 +58,8 @@ class HomeUiMapper @Inject constructor() {
         return listOf(
             HomeCategoryListModel(
                 title = TitleModel(
-                    title = "Category"
+                    title = "Category",
+                    onClick = {}
                 ),
                 list = mapCategoryItemToUiModel(categoryList)
             )
