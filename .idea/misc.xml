@@ -7,12 +7,16 @@
         <entry key="app/src/main/res/drawable/background_color_chip_state_list.xml" value="0.214" />
         <entry key="app/src/main/res/drawable/bckgrnd_discount.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/bottom_menu_background.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/ic_card_nav.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/ic_cart.xml" value="0.1845" />
         <entry key="app/src/main/res/drawable/ic_category.xml" value="0.214" />
         <entry key="app/src/main/res/drawable/ic_heart.xml" value="0.1845" />
         <entry key="app/src/main/res/drawable/ic_heart_fill.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/ic_home_nav.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/ic_orders.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/ic_orders_fill.xml" value="0.1725" />
+        <entry key="app/src/main/res/drawable/ic_orders_nav.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1845" />
         <entry key="app/src/main/res/drawable/ic_share.xml" value="0.255" />
         <entry key="app/src/main/res/drawable/ic_trash.xml" value="0.1845" />

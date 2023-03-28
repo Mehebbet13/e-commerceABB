@@ -29,15 +29,14 @@ class MainActivity : AppCompatActivity() {
         navController = host.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         binding.bottomNav.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             changeVisibilityOfBottomMenu(destination.id)
             when (destination.id) {
-                R.id.homeFragment -> {
+                R.id.nav_home -> {
                     window?.navigationBarColor = ContextCompat.getColor(this, R.color.main)
                 }
-                R.id.fillProfileFragment -> {
+                R.id.nav_profile -> {
                     handleAppBarsColor(R.color.main)
                 }
                 else -> {
@@ -45,19 +44,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-//        binding.bottomNav.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.nav_home -> {
-//                    findNavController(it.itemId).navigate(R.id.homeFragment)
-//                    true
-//                }
-//                R.id.nav_profile -> {
-//                    findNavController(it.itemId).navigate(R.id.fillProfileFragment)
-//                    true
-//                }
-//                else -> it.onNavDestinationSelected(navController) || super.onOptionsItemSelected(it)
-//            }
-//        }
     }
 
     private fun handleAppBarsColor(color: Int) {
@@ -68,11 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeVisibilityOfBottomMenu(destinationId: Int) {
         when (destinationId) {
-            R.id.homeFragment ->
-                binding.bottomNav.isVisible = true
-            R.id.fillProfileFragment ->
-                binding.bottomNav.isVisible = true
-            R.id.ordersFragment ->
+            R.id.nav_home, R.id.nav_cart, R.id.nav_profile, R.id.nav_orders ->
                 binding.bottomNav.isVisible = true
             else -> binding.bottomNav.isVisible = false
         }

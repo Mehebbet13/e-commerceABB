@@ -13,4 +13,30 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="BottomBarActiveTextStyle" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/main</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/nunito_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="BottomBarInActiveTextStyle" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/primaryDark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/nunito_medium</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="BottomBarStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemTextAppearanceInactive">@style/BottomBarInActiveTextStyle</item>
+        <item name="itemTextAppearanceActive">@style/BottomBarActiveTextStyle</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
 </resources>
