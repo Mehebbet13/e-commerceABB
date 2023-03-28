@@ -8,7 +8,7 @@ import com.example.e_commerceabb.models.HomeProductsModel
 import com.example.e_commerceabb.utils.BaseAdapter
 import com.example.e_commerceabb.utils.load
 
-class ProductAdapter : BaseAdapter<HomeProductsModel, ViewHolder>() {
+class HomeProductAdapter : BaseAdapter<HomeProductsModel, ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)

@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.FragmentHomeBinding
 import com.example.e_commerceabb.presentation.home.adapter.HomeAdapter
 import com.example.e_commerceabb.presentation.home.viewmodel.HomeViewModel
@@ -18,7 +20,7 @@ class HomeFragment : Fragment() {
     private val homeAdapter by lazy(LazyThreadSafetyMode.NONE) {
         HomeAdapter()
     }
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels({ this })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +28,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         return binding.root
     }
 
@@ -37,11 +38,15 @@ class HomeFragment : Fragment() {
         binding.rvHome.adapter = homeAdapter
         viewModel.getProducts()
         viewModel.getCategory()
+
         viewModel.productsList.observe(viewLifecycleOwner) { resource ->
             homeAdapter.setList(resource)
         }
         viewModel.catalog.observe(viewLifecycleOwner) { resource ->
             homeAdapter.setList(resource)
+        }
+        viewModel.mapper.onSeeAllClick = {
+            findNavController().navigate(R.id.action_homeFragment_to_productsFragment)
         }
     }
 }
