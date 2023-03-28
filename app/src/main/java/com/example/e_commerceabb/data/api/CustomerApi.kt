@@ -2,7 +2,10 @@ package com.example.e_commerceabb.data.api
 
 import com.example.e_commerceabb.models.*
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface CustomerApi {
     @POST("customers")
@@ -32,9 +35,4 @@ interface CustomerApi {
     suspend fun products(
         @Body request: NewProductRequest
     ): Resource<ProductResponse>
-
-    @PUT("cart/{productId}")
-    suspend fun addToCard(
-        @Path("productId") productId: String
-    ): Response<CardResponse>
 }
