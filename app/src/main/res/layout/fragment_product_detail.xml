@@ -21,8 +21,8 @@
             android:src="@drawable/ic_share" />
     </androidx.appcompat.widget.Toolbar>
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerProduct"
@@ -188,6 +188,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/specifications" />
 
@@ -213,11 +214,11 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/nunito_medium"
                 android:maxLines="1"
+                android:text="@string/similar_goods"
                 android:textColor="@color/primaryDark"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/questionsLayout"
-                tools:text="Similar goods" />
+                app:layout_constraintTop_toBottomOf="@id/questionsLayout" />
 
             <TextView
                 android:id="@+id/seeAll"
@@ -229,22 +230,23 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/nunito_medium"
                 android:maxLines="1"
+                android:text="@string/see_all"
                 android:textColor="@color/main"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/questionsLayout"
-                tools:text="See all" />
+                app:layout_constraintTop_toBottomOf="@id/questionsLayout" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="16dp"
+                android:id="@+id/productDetailRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/similarGoods" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </HorizontalScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

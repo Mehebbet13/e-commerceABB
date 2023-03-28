@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.data.repository.CartProductsRepositoryImpl
 import com.example.e_commerceabb.data.repository.CustomerRepositoryImpl
 import com.example.e_commerceabb.data.repository.ProductRepositoryImpl
 import com.example.e_commerceabb.models.CardResponse
+import com.example.e_commerceabb.models.FilteredResponse
 import com.example.e_commerceabb.models.ProductDetailResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,6 +29,10 @@ class ProductDetailsViewModel @Inject constructor(
     private val _card = MutableLiveData<CardResponse>()
     val card: LiveData<CardResponse>
         get() = _card
+
+    private val _filteredProduct = MutableLiveData<Resource<FilteredResponse>>()
+    val filteredProduct: LiveData<Resource<FilteredResponse>>
+        get() = _filteredProduct
 
 
     fun getProductDetails(itemID: String) {
@@ -49,6 +55,18 @@ class ProductDetailsViewModel @Inject constructor(
                 response.data.let {
                     _card.postValue(it)
                 }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun getFilteredProduct(name: String) {
+        try {
+            viewModelScope.launch {
+                val response = productRepository.getFilteredProduct(name)
+                    _filteredProduct.postValue(response)
+
             }
         } catch (e: Exception) {
             e.printStackTrace()
