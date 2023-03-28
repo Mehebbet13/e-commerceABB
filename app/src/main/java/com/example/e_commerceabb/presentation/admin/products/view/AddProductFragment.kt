@@ -3,8 +3,10 @@ package com.example.e_commerceabb.presentation.admin.products.view
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,12 +18,19 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.FragmentAddProductBinding
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AddProductFragment : Fragment(R.layout.fragment_add_product) {
     lateinit var binding: FragmentAddProductBinding
     private var pickImage = 10
+    private val imageList = arrayListOf<String>()
+
+    // Create a storage reference from our app
+    var storageRef = Firebase.storage
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -52,7 +61,6 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
             }
         }
 
-    private val imageList = arrayListOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -68,6 +76,7 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         setInputs()
         handleTextChangedListeners()
         addImages()
+        storageRef = FirebaseStorage.getInstance()
     }
 
     private fun openGallery() {
@@ -79,6 +88,18 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
+            data?.data?.let { addImagesToFirebase(it, "$requestCode.jpg") }
+            val imageRef = Firebase.storage.reference.child("/Images/$requestCode.jpg")
+            imageRef.downloadUrl
+                .addOnSuccessListener { uri ->
+                    // Handle successful download URL generation
+                    val imageUrl = uri.toString()
+                    imageList.add(imageUrl)
+                }
+                .addOnFailureListener { exception ->
+                    // Handle any errors
+                    Log.e("TAG", "Error getting download URL", exception)
+                }
             when (requestCode) {
                 10 -> {
                     binding.addedImage.setImageURI(data?.data)
@@ -98,6 +119,11 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
                 }
             }
         }
+    }
+
+    private fun addImagesToFirebase(uri: Uri, imageName: String) {
+        storageRef.getReference("Images").child(imageName)
+            .putFile(uri)
     }
 
     private fun handleContinueButton() {
