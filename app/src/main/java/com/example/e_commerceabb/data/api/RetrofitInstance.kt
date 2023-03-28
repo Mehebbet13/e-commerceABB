@@ -45,6 +45,18 @@ class RetrofitInstance {
         return retrofit.create(FavoritesApi::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun getCatalogApi(retrofit: Retrofit): CatalogApi {
+        return retrofit.create(CatalogApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun getProductApi(retrofit: Retrofit): ProductsApi {
+        return retrofit.create(ProductsApi::class.java)
+    }
+
     @Provides
     @Singleton
     fun providesOKHttpClient(rcInterceptor: RetroClientInterceptor): OkHttpClient {

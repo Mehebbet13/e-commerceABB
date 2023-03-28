@@ -33,18 +33,6 @@ class CustomerRepositoryImpl @Inject constructor(private val customerApi: Custom
         return customerApi.products(request)
     }
 
-    override suspend fun getProducts(): Resource<ArrayList<ProductResponse>> {
-        return safeApiCall { customerApi.getProducts() }
-    }
-
-    override suspend fun getCatalog(): Resource<ArrayList<CatalogResponse>> {
-        return safeApiCall { customerApi.getCatalog() }
-    }
-
-    override suspend fun getProductDetails(itemNo: String): Resource<ProductDetailResponse> {
-        return safeApiCall { customerApi.getProductDetail(itemNo) }
-    }
-
     override suspend fun addToCard(productId: String): Resource<CardResponse> {
         return safeApiCall { customerApi.addToCard(productId) }
     }

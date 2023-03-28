@@ -33,17 +33,6 @@ interface CustomerApi {
         @Body request: NewProductRequest
     ): Resource<ProductResponse>
 
-    @GET("products")
-    suspend fun getProducts(): Response<ArrayList<ProductResponse>>
-
-    @GET("catalog")
-    suspend fun getCatalog(): Response<ArrayList<CatalogResponse>>
-
-    @GET("products/{itemNo}")
-    suspend fun getProductDetail(
-        @Path("itemNo") itemNo: String
-    ): Response<ProductDetailResponse>
-
     @PUT("cart/{productId}")
     suspend fun addToCard(
         @Path("productId") productId: String

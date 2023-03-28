@@ -5,7 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerceabb.data.api.Resource
-import com.example.e_commerceabb.data.repository.CustomerRepositoryImpl
+import com.example.e_commerceabb.data.repository.CatalogRepositoryImpl
+import com.example.e_commerceabb.data.repository.ProductRepositoryImpl
 import com.example.e_commerceabb.models.HomeCategoryListModel
 import com.example.e_commerceabb.models.HomeProductsListModel
 import com.example.e_commerceabb.presentation.home.mapper.HomeUiMapper
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: CustomerRepositoryImpl,
+    private val catalogRepository: CatalogRepositoryImpl,
+    private val productRepository: ProductRepositoryImpl,
     var mapper: HomeUiMapper
 ) : ViewModel() {
 
@@ -32,7 +34,7 @@ class HomeViewModel @Inject constructor(
     fun getProducts() {
         isRefreshing.postValue(true)
         viewModelScope.launch {
-            when (val response = repository.getProducts()) {
+            when (val response = productRepository.getProducts()) {
                 is Resource.Success -> {
                     response.data?.let {
                         _productsList.postValue(mapper.mapProductsToUiModel(it))
@@ -45,7 +47,7 @@ class HomeViewModel @Inject constructor(
 
     fun getCategory() {
         viewModelScope.launch {
-            when (val response = repository.getCatalog()) {
+            when (val response = catalogRepository.getCatalog()) {
                 is Resource.Success -> {
                     response.data?.let {
                         _catalog.postValue(mapper.mapCategoryToUiModel(it))

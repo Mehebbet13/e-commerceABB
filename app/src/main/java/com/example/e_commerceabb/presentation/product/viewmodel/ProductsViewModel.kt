@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.e_commerceabb.data.repository.CustomerRepositoryImpl
+import com.example.e_commerceabb.data.repository.ProductRepositoryImpl
 import com.example.e_commerceabb.models.ProductResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
-    private val repository: CustomerRepositoryImpl
+    private val repository: ProductRepositoryImpl
 ) : ViewModel() {
 
     private val _products = MutableLiveData<List<ProductResponse>>()
