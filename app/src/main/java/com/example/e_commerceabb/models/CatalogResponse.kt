@@ -9,11 +9,11 @@ data class CatalogResponse(
     @SerializedName("id")
     val id: String,
     @SerializedName("name")
-    val name: String,
+    val name: String? = null,
     @SerializedName("parentId")
     val parentId: String,
     @SerializedName("imgUrl")
-    val imgUrl: String,
+    val imgUrl: String? = null,
     @SerializedName("description")
     val description: String,
     @SerializedName("level")

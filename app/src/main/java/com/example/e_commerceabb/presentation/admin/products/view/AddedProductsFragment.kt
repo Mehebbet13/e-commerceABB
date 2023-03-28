@@ -69,7 +69,7 @@ class AddedProductsFragment : Fragment(R.layout.fragment_added_products) {
         productData.forEach { product ->
             val order = Order(
                 product.id ?: EMPTY,
-                product.imageUrls?.get(0) ?: EMPTY,
+                product.imageUrls?.getOrNull(0) ?: EMPTY,
                 product.name ?: EMPTY,
                 "US $${product.currentPrice}"
             )

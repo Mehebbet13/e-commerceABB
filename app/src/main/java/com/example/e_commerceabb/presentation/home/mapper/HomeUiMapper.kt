@@ -1,6 +1,5 @@
 package com.example.e_commerceabb.presentation.home.mapper
 
-import com.example.e_commerceabb.R
 import com.example.e_commerceabb.models.*
 import com.example.e_commerceabb.utils.Constants.EMPTY
 import javax.inject.Inject
@@ -17,8 +16,7 @@ class HomeUiMapper @Inject constructor() {
                 discountLAbel = "-10%",
                 discountAmount = "${response.currentPrice} ${"$"}",
                 amount = "${response.previousPrice} ${"$"}",
-                image = R.drawable.rectangle_14
-                //  image = response.imageUrls?.get(1)?:"img/products/men/004.png"
+                image = response.imageUrls?.getOrNull(0) ?: EMPTY
             )
         }
     }
@@ -45,9 +43,8 @@ class HomeUiMapper @Inject constructor() {
     ): List<HomeCategoryModel> {
         return categoryList.mapNotNull { response ->
             HomeCategoryModel(
-                title = response.name,
-                image = R.drawable.rectangle_14
-                //   image = response.imgUrl
+                title = response.name ?: EMPTY,
+                image = response.imgUrl ?: EMPTY
             )
         }
     }

@@ -29,7 +29,7 @@ class HomeProductAdapter : BaseAdapter<HomeProductsModel, ViewHolder>() {
                 discountLabel.text = item.discountLAbel
                 discountAmountProduct.text = item.discountAmount
                 amountProduct.text = item.amount
-                imgProduct.load(item.image)
+                productImage.load(item.image)
             }
         }
     }

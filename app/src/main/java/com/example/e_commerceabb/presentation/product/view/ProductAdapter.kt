@@ -47,8 +47,7 @@ class ProductAdapter(val isGrouped: Boolean) :
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-//                imgProduct.load(R.drawable.rectangle_14)
-                imgProduct.load(item.imageUrls?.get(0) ?: EMPTY)
+                  imgProduct.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
             }
         }
     }
@@ -62,7 +61,7 @@ class ProductAdapter(val isGrouped: Boolean) :
                 discountLabel.text = "-10%"
                 discountAmountProduct.text = "${item.previousPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
-                productImage.load(item.imageUrls?.get(0) ?: EMPTY)
+                productImage.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
             }
         }
     }
