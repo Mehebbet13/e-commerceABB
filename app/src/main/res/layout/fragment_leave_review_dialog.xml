@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/transparent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
     tools:context=".dialogs.LeaveReviewDialogFragment">
 
     <com.google.android.material.card.MaterialCardView
@@ -12,11 +14,7 @@
         android:layout_gravity="center"
         android:elevation="8dp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:cardCornerRadius="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -55,6 +53,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageProduct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/rectangle_14" />
@@ -109,7 +108,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/review"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/register_type_background"
@@ -154,13 +153,13 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/button_with_stroke"
-                android:paddingHorizontal="24dp"
+                android:paddingHorizontal="54dp"
                 android:textAllCaps="false"
                 android:textColor="@color/secondary"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/addProduct"
-                tools:text="Track order" />
+                android:text="@string/cancel" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSubmit"
@@ -170,13 +169,13 @@
                 android:alpha="0.3"
                 android:background="@drawable/welcome_button"
                 android:clickable="false"
-                android:paddingHorizontal="24dp"
+                android:paddingHorizontal="54dp"
                 android:textAllCaps="false"
                 android:textColor="@color/whiteText"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/addProduct"
-                tools:text="Track order" />
+                android:text="@string/submit" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

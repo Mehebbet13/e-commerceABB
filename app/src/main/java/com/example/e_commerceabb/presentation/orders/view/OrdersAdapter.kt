@@ -10,7 +10,7 @@ import com.example.e_commerceabb.utils.load
 
 class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
     private val orders: MutableList<Order> = mutableListOf()
-    var onButtonClick: (() -> Unit)? = null
+    var onButtonClick: ((order: Order) -> Unit)? = null
 
     fun setData(data: List<Order>) {
         this.orders.clear()
@@ -39,7 +39,7 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
             binding.productBtn.text = order.buttonName
             binding.productImage.load(order.imageUrl)
             binding.productBtn.setOnClickListener {
-                onButtonClick?.invoke()
+                onButtonClick?.invoke(order)
             }
             if (order.status == itemView.context.getString(R.string.completed)) {
                 binding.status.setTextColor(itemView.context.getColor(R.color.done))

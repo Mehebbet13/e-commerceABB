@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.databinding.FragmentOrdersBinding
+import com.example.e_commerceabb.dialogs.CustomDialogFragment
+import com.example.e_commerceabb.dialogs.LeaveReviewDialogFragment
+import com.example.e_commerceabb.models.AddCommentRequest
 import com.example.e_commerceabb.models.CustomerOrdersResponse
 import com.example.e_commerceabb.models.Order
 import com.example.e_commerceabb.presentation.orders.viewmodel.OrdersViewModel
@@ -31,6 +34,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private var ongoingOrdersList = mutableListOf<Order>()
     private var completedOrdersList = mutableListOf<Order>()
     private var cancelledOrdersList = mutableListOf<Order>()
+    private var dialog: LeaveReviewDialogFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -134,6 +138,28 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         binding.completedProductsRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.completedProductsRv.adapter = adapter3
+
+        adapter3.onButtonClick = {
+            showReviewDialog(it)
+        }
+    }
+
+    private fun showReviewDialog(order: Order) {
+        val dialogBuilder = LeaveReviewDialogFragment.Builder()
+            .image(order.imageUrl)
+            .labelText(order.name)
+            .descriptionText(order.price)
+
+        dialog = dialogBuilder.build()
+
+        dialog?.submitListener = {
+            val comment = AddCommentRequest(
+                it,
+                order.id
+            )
+            viewModel.addComment(comment)
+        }
+        dialog?.show(parentFragmentManager, CustomDialogFragment::class.java.canonicalName)
     }
 
     private fun setCancelledProductsAdapter() {

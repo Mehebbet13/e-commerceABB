@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.ECommerceABB" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -38,5 +38,16 @@
         <item name="itemTextAppearanceActive">@style/BottomBarActiveTextStyle</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="FullScreenDialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">
+            @android:color/transparent
+        </item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 </resources>

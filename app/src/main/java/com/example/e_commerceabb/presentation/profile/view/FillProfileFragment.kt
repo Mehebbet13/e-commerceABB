@@ -322,7 +322,7 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
             viewModel.updateCustomer(customerRequest)
         }
         binding.btnSkip.setOnClickListener {
-            findNavController().navigate(R.id.nav_cart)
+            setInputVisibilities(false)
         }
     }
 }

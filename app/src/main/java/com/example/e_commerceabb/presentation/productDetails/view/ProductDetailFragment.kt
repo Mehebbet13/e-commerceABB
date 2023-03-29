@@ -32,7 +32,6 @@ class ProductDetailFragment : Fragment() {
     var name: String? = null
     private val imgList: ArrayList<String> = arrayListOf()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,9 +53,14 @@ class ProductDetailFragment : Fragment() {
             binding.productDetailTitle.text = item.name
             binding.productDetailSubtitle.text = item.description
             binding.productDetailCurrentPrice.text = "${item.currentPrice} ${"$"}"
-            binding.productDetailPreviousPrice.text = "${item.previousPrice} ${"$"}"
-            binding.reviewLayout.count.text=item.quantity.toString()
-            binding.questionsLayout.count.text=item.quantity.toString()
+            if (item.previousPrice == null) {
+                binding.productDetailPreviousPrice.visibility = View.GONE
+            } else {
+                binding.productDetailPreviousPrice.visibility = View.VISIBLE
+                binding.productDetailPreviousPrice.text = "${item.previousPrice} $"
+            }
+            binding.reviewLayout.count.text = item.quantity.toString()
+            binding.questionsLayout.count.text = item.quantity.toString()
             binding.btnAddToCart.setOnClickListener {
                 viewModel.addToCard(item.id ?: EMPTY)
             }
@@ -89,7 +93,6 @@ class ProductDetailFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun setTitle() {

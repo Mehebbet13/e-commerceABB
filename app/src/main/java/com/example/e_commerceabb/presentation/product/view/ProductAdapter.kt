@@ -1,6 +1,7 @@
 package com.example.e_commerceabb.presentation.product.view
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.R
@@ -43,8 +44,13 @@ class ProductAdapter(val isGrouped: Boolean, val isFaved: Boolean) :
                 titleProduct.text = item.name
                 subtitleProduct.text = item.description
                 discountLabel.text = "-10%"
-                discountAmountProduct.text = "${item.currentPrice} ${"$"}"
-                amountProduct.text = "${item.previousPrice} ${"$"}"
+                discountAmountProduct.text = "${item.currentPrice} $"
+                if (item.previousPrice == null) {
+                    amountProduct.visibility = View.GONE
+                } else {
+                    amountProduct.visibility = View.VISIBLE
+                    amountProduct.text = "${item.previousPrice} $"
+                }
                 imgProduct.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
                 productRoot.setOnClickListener {
                     item.itemNo.let { it1 -> itemClickListener?.invoke(it1) }
@@ -68,9 +74,14 @@ class ProductAdapter(val isGrouped: Boolean, val isFaved: Boolean) :
                 subtitleProduct.text = item.description
                 productName.text = item.name
                 discountLabel.text = "-10%"
-                discountAmountProduct.text = "${item.previousPrice} ${"$"}"
-                amountProduct.text = "${item.previousPrice} ${"$"}"
-                productImage.load(item.imageUrls?.get(0) ?: EMPTY)
+                discountAmountProduct.text = "${item.previousPrice} $"
+                if (item.previousPrice == null) {
+                    amountProduct.visibility = View.GONE
+                } else {
+                    amountProduct.visibility = View.VISIBLE
+                    amountProduct.text = "${item.previousPrice} $"
+                }
+                productImage.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
                 productRoot.setOnClickListener {
                     item.itemNo.let { it1 -> itemClickListener?.invoke(it1) }
                 }

@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.data.repository.CustomerOrdersRepositoryImpl
+import com.example.e_commerceabb.models.AddCommentRequest
+import com.example.e_commerceabb.models.CommentsResponse
 import com.example.e_commerceabb.models.CustomerOrdersResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,11 +21,26 @@ class OrdersViewModel @Inject constructor(private val repository: CustomerOrders
     val orders: LiveData<Resource<CustomerOrdersResponse>>
         get() = _orders
 
+    private val _comments = MutableLiveData<Resource<CommentsResponse>>()
+    val comments: LiveData<Resource<CommentsResponse>>
+        get() = _comments
+
     fun getCustomerOrders() {
         try {
             viewModelScope.launch {
                 val response = repository.getCustomersOrders()
                 _orders.postValue(response)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun addComment(request: AddCommentRequest) {
+        try {
+            viewModelScope.launch {
+                val response = repository.addComment(request)
+                _comments.postValue(response)
             }
         } catch (e: Exception) {
             e.printStackTrace()
