@@ -48,12 +48,19 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private fun observeCartProducts() {
         viewModel.cartProducts.observe(viewLifecycleOwner) {
+            binding.progress.visibility = View.GONE
             when (it) {
                 is Resource.Success -> {
+                    if (it.data?.products?.isEmpty() == true) {
+                        binding.emptyTitle.visibility = View.VISIBLE
+                    } else {
+                        binding.emptyTitle.visibility = View.GONE
+                    }
                     cartProductList.clear()
                     it.data?.let { data -> setAdapterData(data) }
                 }
                 is Resource.Error -> {
+                    binding.emptyTitle.visibility = View.VISIBLE
                     Toast.makeText(
                         requireContext(),
                         it.message,
@@ -86,6 +93,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             when (it) {
                 is Resource.Success -> {
                     findNavController().navigate(R.id.nav_orders)
+                    binding.progress.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -103,10 +111,16 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             findNavController().popBackStack()
         }
         binding.btnBuyNow.setOnClickListener {
+            binding.progress.visibility = View.VISIBLE
             val customerId = viewModel.cartProducts.value?.data?.customerId?.id ?: EMPTY
             val email = viewModel.cartProducts.value?.data?.customerId?.email ?: EMPTY
             val products = viewModel.cartProducts.value?.data
-            val request = PlaceOrderRequest(customerId = customerId, email = email, products = products, status = "not shipped")
+            val request = PlaceOrderRequest(
+                customerId = customerId,
+                email = email,
+                products = products,
+                status = "shipped"
+            )
             viewModel.placeOrders(request)
         }
     }

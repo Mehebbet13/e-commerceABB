@@ -49,11 +49,18 @@ class AddedProductsFragment : Fragment(R.layout.fragment_added_products) {
 
     private fun observeProducts() {
         viewModel.addedProducts.observe(viewLifecycleOwner) {
+            binding.progress.visibility = View.GONE
             when (it) {
                 is Resource.Success -> {
+                    if (it.data?.products?.isEmpty() == true) {
+                        binding.emptyTitle.visibility = View.VISIBLE
+                    } else {
+                        binding.emptyTitle.visibility = View.GONE
+                    }
                     it.data?.let { data -> setAdapterData(data) }
                 }
                 is Resource.Error -> {
+                    binding.emptyTitle.visibility = View.VISIBLE
                     Toast.makeText(
                         requireContext(),
                         it.message,

@@ -171,7 +171,7 @@ class NewPasswordFragment : Fragment(R.layout.fragment_new_password) {
     }
 
     private fun navigateToHome() {
-        Log.e("mike", "salam hehe")
+        findNavController().navigate(R.id.nav_profile)
     }
 
     private fun showSuccessDialog() {

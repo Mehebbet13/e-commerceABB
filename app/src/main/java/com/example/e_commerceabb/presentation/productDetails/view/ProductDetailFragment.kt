@@ -60,6 +60,7 @@ class ProductDetailFragment : Fragment() {
             binding.btnAddToCart.setOnClickListener {
                 viewModel.addToCard(item.id ?: EMPTY)
             }
+            imgList.clear()
             item.imageUrls?.let {
                 imgList.addAll(it)
             }
@@ -126,8 +127,5 @@ class ProductDetailFragment : Fragment() {
                 }
             })
         }
-//        adapter.itemFavIconListener={
-//            viewModel.addFavoriteProduct()
-//        }
     }
 }

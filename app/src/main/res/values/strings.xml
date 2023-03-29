@@ -93,4 +93,5 @@
     <string name="specifications">Specifications</string>
     <string name="similar_goods">Similar goods</string>
     <string name="see_all">See all</string>
+    <string name="empty_title">Your list is empty. Please add products</string>
 </resources>

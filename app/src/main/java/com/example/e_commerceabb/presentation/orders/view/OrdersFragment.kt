@@ -28,9 +28,9 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private val adapter by lazy { OrdersAdapter() }
     private val adapter1 by lazy { OrdersAdapter() }
     private val adapter3 by lazy { OrdersAdapter() }
-    var ongoingOrdersList = mutableListOf<Order>()
-    var completedOrders = mutableListOf<Order>()
-    var cancelledOrdersList = mutableListOf<Order>()
+    private var ongoingOrdersList = mutableListOf<Order>()
+    private var completedOrdersList = mutableListOf<Order>()
+    private var cancelledOrdersList = mutableListOf<Order>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +51,9 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     }
 
     private fun setAdapterData(data: CustomerOrdersResponse) {
+        ongoingOrdersList.clear()
+        completedOrdersList.clear()
+        cancelledOrdersList.clear()
         val completedData = data.filter { it.status == "shipped" && !it.canceled }
         completedData.forEach {
             it.products.forEach { product ->
@@ -62,11 +65,11 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
                     getString(R.string.leave_review),
                     getString(R.string.completed)
                 )
-                completedOrders.add(order)
+                completedOrdersList.add(order)
             }
         }
         setCompletedProductsAdapter()
-        adapter3.setData(completedOrders)
+        adapter3.setData(completedOrdersList)
 
         val ongoingData = data.filter { it.status == "not shipped" && !it.canceled }
         ongoingData.forEach {
@@ -128,9 +131,9 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     }
 
     private fun setCompletedProductsAdapter() {
-        binding.ongoingProductsRv.layoutManager =
+        binding.completedProductsRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.ongoingProductsRv.adapter = adapter3
+        binding.completedProductsRv.adapter = adapter3
     }
 
     private fun setCancelledProductsAdapter() {
@@ -172,7 +175,11 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
                         if (openDropDown) R.drawable.ic_arrow_down else R.drawable.ic_arrow_right
                     )
                 )
-                completedOrders.isVisible = openDropDown
+                if (completedOrdersList.isEmpty()) {
+                    completedOrders.isVisible = openDropDown
+                } else {
+                    completedProductsRv.isVisible = openDropDown
+                }
                 openDropDown = !openDropDown
             }
             cancelled.setOnClickListener {
@@ -192,7 +199,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         }
     }
 
-    fun handleFavoritesButton() {
+    private fun handleFavoritesButton() {
         binding.btnWishList.setOnClickListener {
             findNavController().navigate(R.id.action_ordersFragment_to_favoriteProductsFragment)
         }

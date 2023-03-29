@@ -7,11 +7,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -92,11 +94,12 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         handleTextChangedListeners()
         addImages()
         observeProducts()
+//        setButtonMargin()
         storageRef = FirebaseStorage.getInstance()
         binding.addNewProduct.setOnClickListener {
             addProduct()
         }
-
+        binding.scrollView.smoothScrollTo(0, 0)
         token = tokenManager.getToken()
         userId = token?.let { Jwt.getUserId(it) }
     }
@@ -267,21 +270,56 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
                 setInputs()
                 handleContinueButton()
             }
+            name.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    scrollView.post {
+                        scrollView.smoothScrollTo(0, description.bottom)
+                    }
+                }
+            }
             description.addTextChangedListener {
                 setInputs()
                 handleContinueButton()
+            }
+            description.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    scrollView.post {
+                        scrollView.smoothScrollTo(0, price.bottom)
+                    }
+                }
             }
             price.addTextChangedListener {
                 setInputs()
                 handleContinueButton()
             }
+            price.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    scrollView.post {
+                        scrollView.smoothScrollTo(0, brand.bottom)
+                    }
+                }
+            }
             brand.addTextChangedListener {
                 setInputs()
                 handleContinueButton()
             }
+            brand.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    scrollView.post {
+                        scrollView.smoothScrollTo(0, category.bottom)
+                    }
+                }
+            }
             category.addTextChangedListener {
                 setInputs()
                 handleContinueButton()
+            }
+            category.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    scrollView.post {
+                        scrollView.smoothScrollTo(0, category.bottom)
+                    }
+                }
             }
         }
     }
@@ -302,6 +340,17 @@ class AddProductFragment : Fragment(R.layout.fragment_add_product) {
         binding.addForthImage.setOnClickListener {
             pickImage = 40
             requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+    }
+
+    private fun setButtonMargin() {
+        val tv = TypedValue()
+        if (requireActivity().theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            val actionBarHeight =
+                TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
+            val param = binding.addNewProduct.layoutParams as ConstraintLayout.LayoutParams
+            param.setMargins(0, 0, 0, actionBarHeight + 16)
+            binding.addNewProduct.layoutParams = param
         }
     }
 }

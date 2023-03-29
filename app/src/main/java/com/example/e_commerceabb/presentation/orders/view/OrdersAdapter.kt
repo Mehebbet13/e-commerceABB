@@ -3,6 +3,7 @@ package com.example.e_commerceabb.presentation.orders.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.OrderedProductBinding
 import com.example.e_commerceabb.models.Order
 import com.example.e_commerceabb.utils.load
@@ -10,21 +11,12 @@ import com.example.e_commerceabb.utils.load
 class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
     private val orders: MutableList<Order> = mutableListOf()
     var onButtonClick: (() -> Unit)? = null
-var i = 0
-        fun setData(data: List<Order>) {
+
+    fun setData(data: List<Order>) {
         this.orders.clear()
         this.orders.addAll(data)
         notifyItemChanged(0)
     }
-//    fun setData(data: List<Order>, index: Int) {
-//        i = index
-//        if (index >= orders.size) {
-//            orders.add(data)
-//        } else {
-//            orders[index] = data
-//        }
-//        notifyDataSetChanged()
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
         val binding =
@@ -48,6 +40,13 @@ var i = 0
             binding.productImage.load(order.imageUrl)
             binding.productBtn.setOnClickListener {
                 onButtonClick?.invoke()
+            }
+            if (order.status == itemView.context.getString(R.string.completed)) {
+                binding.status.setTextColor(itemView.context.getColor(R.color.done))
+                binding.status.backgroundTintList = itemView.context.getColorStateList(R.color.done)
+            } else {
+                binding.status.setTextColor(itemView.context.getColor(R.color.main))
+                binding.status.backgroundTintList = itemView.context.getColorStateList(R.color.main)
             }
         }
     }

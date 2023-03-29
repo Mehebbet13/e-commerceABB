@@ -37,9 +37,7 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
                 val scaleAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.scale)
                 binding.logoCircle.startAnimation(scaleAnim)
                 lifecycleScope.launch {
-                    delay(1800)
-                    activity?.window?.navigationBarColor = requireContext().getColor(R.color.main)
-                    activity?.window?.statusBarColor = requireContext().getColor(R.color.main)
+                    delay(1700)
                     navigateToWelcomeScreen()
                 }
             }
