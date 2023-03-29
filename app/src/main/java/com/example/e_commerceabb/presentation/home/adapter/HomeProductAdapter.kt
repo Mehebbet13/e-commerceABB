@@ -30,6 +30,13 @@ class HomeProductAdapter : BaseAdapter<HomeProductsModel, ViewHolder>() {
                 discountAmountProduct.text = item.discountAmount
                 amountProduct.text = item.amount
                 productImage.load(item.image)
+                favIcon.setOnClickListener {
+                    item.onFavIconClick()
+                }
+                homeProductRoot.setOnClickListener {
+                    item.onItemCLick()
+                }
+
             }
         }
     }

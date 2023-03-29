@@ -8,11 +8,15 @@ import com.example.e_commerceabb.utils.load
 
 class ProductDetailViewPagerAdapter(private val data: ArrayList<String>) :
     RecyclerView.Adapter<ProductDetailViewPagerAdapter.ProductDetailPagerHolder>() {
+    var itemFavIconListener: (() -> Unit)? = null
     inner class ProductDetailPagerHolder(private val binding: ProductDetailPagerListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(img:String) {
             binding.productImage.load(img)
+            binding.favIcon.setOnClickListener {
+                itemFavIconListener?.invoke()
+            }
         }
     }
 

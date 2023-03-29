@@ -3,6 +3,7 @@ package com.example.e_commerceabb.presentation.product.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.ListItemHomeProductGroupedBinding
 import com.example.e_commerceabb.databinding.ListItemProductBinding
 import com.example.e_commerceabb.models.ProductResponse
@@ -10,9 +11,10 @@ import com.example.e_commerceabb.utils.BaseAdapter
 import com.example.e_commerceabb.utils.Constants.EMPTY
 import com.example.e_commerceabb.utils.load
 
-class ProductAdapter(val isGrouped: Boolean) :
+class ProductAdapter(val isGrouped: Boolean, val isFaved: Boolean) :
     BaseAdapter<ProductResponse, RecyclerView.ViewHolder>() {
     var itemClickListener: ((itemNo: String) -> Unit)? = null
+    var itemFavIconListener: ((id: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -47,6 +49,14 @@ class ProductAdapter(val isGrouped: Boolean) :
                 productRoot.setOnClickListener {
                     item.itemNo.let { it1 -> itemClickListener?.invoke(it1) }
                 }
+                favIcon.setOnClickListener {
+                    itemFavIconListener?.invoke(item.id ?: EMPTY)
+                }
+                if (isFaved) {
+                    favIcon.setImageResource(R.drawable.ic_heart_fill)
+                } else {
+                    favIcon.setImageResource(R.drawable.ic_heart)
+                }
             }
         }
     }
@@ -63,6 +73,14 @@ class ProductAdapter(val isGrouped: Boolean) :
                 productImage.load(item.imageUrls?.get(0) ?: EMPTY)
                 productRoot.setOnClickListener {
                     item.itemNo.let { it1 -> itemClickListener?.invoke(it1) }
+                }
+                favIcon.setOnClickListener {
+                    itemFavIconListener?.invoke(item.id ?: EMPTY)
+                }
+                if (isFaved) {
+                    favIcon.setImageResource(R.drawable.ic_heart_fill)
+                } else {
+                    favIcon.setImageResource(R.drawable.ic_heart)
                 }
             }
         }

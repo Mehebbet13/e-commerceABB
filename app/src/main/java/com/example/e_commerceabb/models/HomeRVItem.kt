@@ -5,7 +5,7 @@ interface HomeRVItem
 data class TitleModel(
     val title: String? = null,
     val seeAll: String? = null,
-    val onClick: () -> Unit
+    val onClick: () -> Unit,
 ) : HomeRVItem
 
 data class HomeCategoryListModel(

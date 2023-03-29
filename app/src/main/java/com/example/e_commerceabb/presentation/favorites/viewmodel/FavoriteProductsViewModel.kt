@@ -51,4 +51,5 @@ class FavoriteProductsViewModel @Inject constructor(private val repository: Favo
             e.printStackTrace()
         }
     }
+
 }

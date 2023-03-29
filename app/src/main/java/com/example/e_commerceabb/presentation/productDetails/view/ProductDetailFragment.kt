@@ -113,5 +113,8 @@ class ProductDetailFragment : Fragment() {
                 }
             })
         }
+//        adapter.itemFavIconListener={
+//            viewModel.addFavoriteProduct()
+//        }
     }
 }

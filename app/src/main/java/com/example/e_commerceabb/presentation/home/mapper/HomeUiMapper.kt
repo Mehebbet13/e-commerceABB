@@ -6,6 +6,8 @@ import javax.inject.Inject
 
 class HomeUiMapper @Inject constructor() {
     var onSeeAllClick: (() -> Unit)? = null
+    var onFavIconCLick: ((id: String) -> Unit)? = null
+    var onItemCLick: ((id: String) -> Unit)? = null
     private fun mapProductsItemToUiModel(
         productList: ArrayList<ProductResponse>
     ): List<HomeProductsModel> {
@@ -16,7 +18,11 @@ class HomeUiMapper @Inject constructor() {
                 discountLAbel = "-10%",
                 discountAmount = "${response.currentPrice} ${"$"}",
                 amount = "${response.previousPrice} ${"$"}",
-                image = response.imageUrls?.getOrNull(0) ?: EMPTY
+                image = response.imageUrls?.getOrNull(0) ?: EMPTY,
+                onFavIconClick = {
+                    onFavIconCLick?.invoke(response.id ?: EMPTY)
+                },
+                onItemCLick = { onItemCLick?.invoke(response.itemNo ?: EMPTY) },
             )
         }
     }
@@ -56,7 +62,7 @@ class HomeUiMapper @Inject constructor() {
             HomeCategoryListModel(
                 title = TitleModel(
                     title = "Category",
-                    onClick = {}
+                    onClick = {},
                 ),
                 list = mapCategoryItemToUiModel(categoryList)
             )
