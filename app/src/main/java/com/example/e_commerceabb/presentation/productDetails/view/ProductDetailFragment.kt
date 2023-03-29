@@ -55,8 +55,6 @@ class ProductDetailFragment : Fragment() {
             binding.productDetailSubtitle.text = item.description
             binding.productDetailCurrentPrice.text = "${item.currentPrice} ${"$"}"
             binding.productDetailPreviousPrice.text = "${item.previousPrice} ${"$"}"
-            binding.reviewLayout.count.text=item.quantity.toString()
-            binding.questionsLayout.count.text=item.quantity.toString()
             binding.btnAddToCart.setOnClickListener {
                 viewModel.addToCard(item.id ?: EMPTY)
             }
