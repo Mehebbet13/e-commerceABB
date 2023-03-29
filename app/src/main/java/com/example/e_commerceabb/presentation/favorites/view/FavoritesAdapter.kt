@@ -10,6 +10,7 @@ import com.example.e_commerceabb.utils.load
 class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder>() {
     private val orders: MutableList<Order> = mutableListOf()
     var onFavButtonClick: ((productId: String) -> Unit)? = null
+    var addToCardClick: ((productId: String) -> Unit)? = null
 
     fun setData(data: List<Order>) {
         this.orders.clear()
@@ -37,6 +38,9 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHold
             binding.productImage.load(order.imageUrl)
             binding.favButton.setOnClickListener {
                 onFavButtonClick?.invoke(order.id)
+            }
+            binding.btnAddToCart.setOnClickListener {
+                addToCardClick?.invoke(order.id)
             }
         }
     }

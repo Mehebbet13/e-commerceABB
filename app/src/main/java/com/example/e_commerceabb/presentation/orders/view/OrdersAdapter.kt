@@ -3,6 +3,7 @@ package com.example.e_commerceabb.presentation.orders.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.OrderedProductBinding
 import com.example.e_commerceabb.models.Order
 import com.example.e_commerceabb.utils.load
@@ -39,6 +40,13 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
             binding.productImage.load(order.imageUrl)
             binding.productBtn.setOnClickListener {
                 onButtonClick?.invoke()
+            }
+            if (order.status == itemView.context.getString(R.string.completed)) {
+                binding.status.setTextColor(itemView.context.getColor(R.color.done))
+                binding.status.backgroundTintList = itemView.context.getColorStateList(R.color.done)
+            } else {
+                binding.status.setTextColor(itemView.context.getColor(R.color.main))
+                binding.status.backgroundTintList = itemView.context.getColorStateList(R.color.main)
             }
         }
     }

@@ -71,7 +71,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/image"
-        tools:text="Track order" />
+        android:text="@string/add_to_cart" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnBuyNow"
@@ -84,5 +84,5 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Track order" />
+        android:text="@string/buy_now" />
 </androidx.constraintlayout.widget.ConstraintLayout>

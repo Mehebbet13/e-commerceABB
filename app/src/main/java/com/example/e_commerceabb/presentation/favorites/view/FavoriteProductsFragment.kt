@@ -39,14 +39,42 @@ class FavoriteProductsFragment : Fragment(R.layout.fragment_favorite_products) {
         viewModel.getFavoriteProducts()
         observeFavorites()
         setListeners()
+        observeAddToCart()
     }
 
     private fun observeFavorites() {
         viewModel.favoriteProducts.observe(viewLifecycleOwner) {
+            binding.progress.visibility = View.GONE
             when (it) {
                 is Resource.Success -> {
+                    if (it.data?.products?.isNullOrEmpty() == true) {
+                        binding.emptyTitle.visibility = View.VISIBLE
+                    } else {
+                        binding.emptyTitle.visibility = View.GONE
+                    }
                     it.data?.let { data -> setAdapterData(data) }
-                    binding.progress.visibility = View.GONE
+                }
+                is Resource.Error -> {
+                    binding.emptyTitle.visibility = View.VISIBLE
+                    Toast.makeText(
+                        requireContext(),
+                        it.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun observeAddToCart() {
+        viewModel.cartProducts.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Added to cart",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -86,6 +114,9 @@ class FavoriteProductsFragment : Fragment(R.layout.fragment_favorite_products) {
         binding.favoritesRv.adapter = adapter
         adapter.onFavButtonClick = { productId ->
             viewModel.deleteFavoriteProduct(productId)
+        }
+        adapter.addToCardClick = { productId ->
+            viewModel.addToCard(productId)
         }
     }
 }

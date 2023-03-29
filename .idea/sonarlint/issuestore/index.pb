@@ -64,8 +64,6 @@ Fapp/src/main/java/com/example/e_commerceabb/data/api/BaseRepository.kt,a/f/af9
 Papp/src/main/java/com/example/e_commerceabb/dialogs/LeaveReviewDialogFragment.kt,5/2/5261729d5e79a3195dd9e996e4fb5e32853a918d
 t
 Dapp/src/main/java/com/example/e_commerceabb/data/api/FavoritesApi.kt,7/e/7e07f2b56179c42ba31e5310d59c837834ccfd52
-ô
-iapp/src/main/java/com/example/e_commerceabb/presentation/favorites/viewmodel/FavoriteProductsViewModel.kt,7/6/76c746905ef1cb9417c42c922e3e1bc9327a268c
 ã
 [app/src/main/java/com/example/e_commerceabb/domain/repository/FavoriteProductsRepository.kt,1/e/1e2ba125467b69203c48a7ce4666abf2af861f98
 ç

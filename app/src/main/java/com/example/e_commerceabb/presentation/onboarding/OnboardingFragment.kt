@@ -37,7 +37,7 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
                 val scaleAnim = AnimationUtils.loadAnimation(requireContext(), R.anim.scale)
                 binding.logoCircle.startAnimation(scaleAnim)
                 lifecycleScope.launch {
-                    delay(2200)
+                    delay(1700)
                     navigateToWelcomeScreen()
                 }
             }
