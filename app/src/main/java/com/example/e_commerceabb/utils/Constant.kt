@@ -23,4 +23,5 @@ object Constants {
     const val MY_PREFS = "myPrefs"
     const val IS_USER_REGISTERED = "isUserRegistered"
     const val ITEM_NO = "itemNo"
+    const val PRODUCT_ID = "productId"
 }

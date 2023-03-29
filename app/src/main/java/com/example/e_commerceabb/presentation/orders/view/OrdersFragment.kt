@@ -17,6 +17,7 @@ import com.example.e_commerceabb.databinding.FragmentOrdersBinding
 import com.example.e_commerceabb.models.CustomerOrdersResponse
 import com.example.e_commerceabb.models.Order
 import com.example.e_commerceabb.presentation.orders.viewmodel.OrdersViewModel
+import com.example.e_commerceabb.utils.Constants.EMPTY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,8 +59,8 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
             it.products.forEach { product ->
                 val order = Order(
                     product.id,
-                    product.product.imageUrls[0],
-                    product.product.name,
+                    product.product.imageUrls.getOrNull(0) ?: EMPTY,
+                    product.product.name ?: EMPTY,
                     "US $${product.product.currentPrice}",
                     getString(R.string.leave_review),
                     getString(R.string.completed)
@@ -76,7 +77,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
                 val order = Order(
                     product.id,
                     product.product.imageUrls[0],
-                    product.product.name,
+                    product.product.name ?: EMPTY,
                     "US $${product.product.currentPrice}",
                     getString(R.string.track_order),
                     getString(R.string.in_delivery)
@@ -93,7 +94,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
                 val cancelledOrder = Order(
                     product.id,
                     product.product.imageUrls[0],
-                    product.product.name,
+                    product.product.name ?: EMPTY,
                     "US $${product.product.currentPrice}",
                     getString(R.string.buy_again),
                     getString(R.string.cancelled)

@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ProductsFragment : Fragment() {
     private lateinit var binding: FragmentProductsBinding
     private var isGrouped: Boolean = true
+    private var isFaved: Boolean = false
     private var productAdapter: ProductAdapter? = null
 
     private val viewModel: ProductsViewModel by viewModels({ this })
@@ -41,6 +42,7 @@ class ProductsFragment : Fragment() {
             isGrouped = isGrouped.not()
             setAdapter()
         }
+
         viewModel.isRefreshing.observe(viewLifecycleOwner) { isRefreshing ->
             binding.progressLayout.root.visibility = if (isRefreshing) View.VISIBLE else View.GONE
         }
@@ -59,7 +61,7 @@ class ProductsFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        productAdapter = ProductAdapter(isGrouped)
+        productAdapter = ProductAdapter(isGrouped, isFaved)
         if (isGrouped) {
             binding.groupListIcon.setImageResource(R.drawable.ic_group_list)
             binding.rvProducts.layoutManager = GridLayoutManager(context, 2)
@@ -69,8 +71,8 @@ class ProductsFragment : Fragment() {
                 LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
         binding.rvProducts.adapter = productAdapter
-        viewModel.products.observe(viewLifecycleOwner) {
-            productAdapter?.setData(it.reversed())
+        viewModel.products.observe(viewLifecycleOwner) { item ->
+            productAdapter?.setData(item.reversed())
             productAdapter?.itemClickListener = { itemNo ->
                 val bundle = bundleOf(
                     Constants.ITEM_NO to itemNo
@@ -80,6 +82,20 @@ class ProductsFragment : Fragment() {
                     bundle
                 )
             }
+            productAdapter?.itemFavIconListener = {
+                viewModel.addFavoriteProduct(it)
+            }
+            binding.imgFav.setOnClickListener {
+                findNavController().navigate(R.id.action_productsFragment_to_favoriteProductsFragment)
+            }
+//            productAdapter?.itemFavIconListener = {
+//                isFaved = isFaved
+//                if (isFaved.not()) {
+//                    viewModel.addFavoriteProduct(it)
+//                } else {
+//                    viewModel.deleteFavoriteProduct(it)
+//                }
+//            }
         }
     }
 }

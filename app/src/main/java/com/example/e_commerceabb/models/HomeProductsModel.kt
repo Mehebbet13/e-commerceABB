@@ -7,4 +7,6 @@ data class HomeProductsModel(
     val subtitle: String,
     val discountAmount: String,
     val amount: String,
-):HomeRVItem
+    val onFavIconClick: () -> Unit,
+    val onItemCLick: () -> Unit
+) : HomeRVItem

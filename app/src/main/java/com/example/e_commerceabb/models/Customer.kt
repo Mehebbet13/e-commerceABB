@@ -5,29 +5,29 @@ import com.google.gson.annotations.SerializedName
 
 data class Customer(
     @SerializedName("avatarUrl")
-    val avatarUrl: String,
+    val avatarUrl: String? = null,
     @SerializedName("date")
-    val date: String,
+    val date: String? = null,
     @SerializedName("email")
-    val email: String,
+    val email: String? = null,
     @SerializedName("enabled")
-    val enabled: Boolean,
+    val enabled: Boolean? = null,
     @SerializedName("firstName")
-    val firstName: String,
+    val firstName: String? = null,
     @SerializedName("gender")
-    val gender: String,
+    val gender: String? = null,
     @SerializedName("_id")
-    val id: String,
+    val id: String? = null,
     @SerializedName("isAdmin")
-    val isAdmin: Boolean,
+    val isAdmin: Boolean? = null,
     @SerializedName("lastName")
-    val lastName: String,
+    val lastName: String? = null,
     @SerializedName("login")
-    val login: String,
+    val login: String? = null,
     @SerializedName("password")
-    val password: String,
+    val password: String? = null,
     @SerializedName("telephone")
-    val telephone: String,
+    val telephone: String? = null,
     @SerializedName("__v")
-    val v: Int
+    val v: Int? = null
 )

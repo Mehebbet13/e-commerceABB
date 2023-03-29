@@ -7,7 +7,7 @@ data class ProductResponse(
     @SerializedName("enabled")
     val enabled: Boolean? = null,
     @SerializedName("imageUrls")
-    val imageUrls: List<String>? = null,
+    val imageUrls: List<String>,
     @SerializedName("quantity")
     val quantity: Int? = null,
     @SerializedName("_id")

@@ -6,20 +6,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.data.repository.CatalogRepositoryImpl
+import com.example.e_commerceabb.data.repository.FavoriteProductsRepositoryImpl
 import com.example.e_commerceabb.data.repository.ProductRepositoryImpl
+import com.example.e_commerceabb.models.FavoriteProducts
 import com.example.e_commerceabb.models.HomeCategoryListModel
 import com.example.e_commerceabb.models.HomeProductsListModel
 import com.example.e_commerceabb.models.SearchRequest
 import com.example.e_commerceabb.presentation.home.mapper.HomeUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.http.Query
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val catalogRepository: CatalogRepositoryImpl,
     private val productRepository: ProductRepositoryImpl,
+    private val favRepository: FavoriteProductsRepositoryImpl,
     var mapper: HomeUiMapper
 ) : ViewModel() {
 
@@ -30,6 +32,10 @@ class HomeViewModel @Inject constructor(
     private val _catalog = MutableLiveData<List<HomeCategoryListModel>>()
     val catalog: LiveData<List<HomeCategoryListModel>>
         get() = _catalog
+
+    private val _favoriteProducts = MutableLiveData<Resource<FavoriteProducts>>()
+    val favoriteProducts: LiveData<Resource<FavoriteProducts>>
+        get() = _favoriteProducts
 
     var isRefreshing = MutableLiveData(false)
 
@@ -58,6 +64,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
     fun search(query: String) {
         viewModelScope.launch {
             when (val response = productRepository.search(SearchRequest(query))) {
@@ -67,6 +74,28 @@ class HomeViewModel @Inject constructor(
                     }
                 }
             }
+        }
+    }
+
+    fun addFavoriteProduct(productId: String) {
+        try {
+            viewModelScope.launch {
+                val response = favRepository.addFavoriteProduct(productId)
+                _favoriteProducts.postValue(response)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun deleteFavoriteProduct(productId: String) {
+        try {
+            viewModelScope.launch {
+                val response = favRepository.deleteFavoriteProduct(productId)
+                _favoriteProducts.postValue(response)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

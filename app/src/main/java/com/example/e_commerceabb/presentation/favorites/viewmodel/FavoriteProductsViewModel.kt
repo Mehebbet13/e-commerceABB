@@ -72,4 +72,5 @@ class FavoriteProductsViewModel @Inject constructor(
             e.printStackTrace()
         }
     }
+
 }

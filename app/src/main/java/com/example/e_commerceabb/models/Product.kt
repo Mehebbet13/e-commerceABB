@@ -9,5 +9,5 @@ data class Product(
     @SerializedName("_id")
     val id: String,
     @SerializedName("product")
-    val product: ProductX
+    val product: ProductResponse
 )
