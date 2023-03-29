@@ -4,11 +4,7 @@ import com.example.e_commerceabb.data.api.BaseRepository
 import com.example.e_commerceabb.data.api.ProductsApi
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.domain.repository.ProductRepository
-import com.example.e_commerceabb.models.AddProductRequest
-import com.example.e_commerceabb.models.FilteredResponse
-import com.example.e_commerceabb.models.ProductDetailResponse
-import com.example.e_commerceabb.models.ProductResponse
-import com.example.e_commerceabb.models.SearchRequest
+import com.example.e_commerceabb.models.*
 import javax.inject.Inject
 
 class ProductRepositoryImpl @Inject constructor(private val productsApi: ProductsApi) :
@@ -32,5 +28,9 @@ class ProductRepositoryImpl @Inject constructor(private val productsApi: Product
 
     override suspend fun search(query: SearchRequest): Resource<ArrayList<ProductResponse>> {
         return safeApiCall { productsApi.search(query) }
+    }
+
+    override suspend fun getComment(productId: String): Resource<ArrayList<CommentsResponse>> {
+        return safeApiCall { productsApi.getComment(productId) }
     }
 }

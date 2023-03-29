@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.e_commerceabb.R
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.databinding.FragmentProductDetailBinding
 import com.example.e_commerceabb.presentation.productDetails.viewmodel.ProductDetailsViewModel
+import com.example.e_commerceabb.utils.Constants
 import com.example.e_commerceabb.utils.Constants.EMPTY
 import com.example.e_commerceabb.utils.Constants.INDEX
 import com.example.e_commerceabb.utils.Constants.ITEM_NO
@@ -52,15 +55,25 @@ class ProductDetailFragment : Fragment() {
             binding.productDetailSubtitle.text = item.description
             binding.productDetailCurrentPrice.text = "${item.currentPrice} ${"$"}"
             binding.productDetailPreviousPrice.text = "${item.previousPrice} ${"$"}"
+            binding.reviewLayout.count.text=item.quantity.toString()
+            binding.questionsLayout.count.text=item.quantity.toString()
             binding.btnAddToCart.setOnClickListener {
                 viewModel.addToCard(item.id ?: EMPTY)
             }
-//            imgList.clear()
             item.imageUrls?.let {
                 imgList.addAll(it)
             }
             setViewPager()
             viewModel.getFilteredProduct(item.name ?: EMPTY)
+            binding.reviewLayout.questionsLayout.setOnClickListener {
+                val bundle = bundleOf(
+                    Constants.PRODUCT_ID to item.id
+                )
+                findNavController().navigate(
+                    R.id.action_productDetailFragment_to_reviewFragment,
+                    bundle
+                )
+            }
         }
         viewModel.filteredProduct.observe(viewLifecycleOwner) {
             when (it) {

@@ -14,4 +14,5 @@ interface ProductRepository {
     suspend fun getProductDetails(itemNo: String): Resource<ProductDetailResponse>
     suspend fun getFilteredProduct(name: String): Resource<FilteredResponse>
     suspend fun search(query: SearchRequest): Resource<ArrayList<ProductResponse>>
+    suspend fun getComment(productId: String): Resource<ArrayList<CommentsResponse>>
 }

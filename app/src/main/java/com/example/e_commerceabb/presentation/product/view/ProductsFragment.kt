@@ -85,6 +85,9 @@ class ProductsFragment : Fragment() {
             productAdapter?.itemFavIconListener = {
                 viewModel.addFavoriteProduct(it)
             }
+            binding.imgFav.setOnClickListener {
+                findNavController().navigate(R.id.action_productsFragment_to_favoriteProductsFragment)
+            }
 //            productAdapter?.itemFavIconListener = {
 //                isFaved = isFaved
 //                if (isFaved.not()) {

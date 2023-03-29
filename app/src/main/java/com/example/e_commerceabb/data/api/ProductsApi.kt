@@ -1,9 +1,5 @@
 package com.example.e_commerceabb.data.api
 
-import com.example.e_commerceabb.models.FilteredResponse
-import com.example.e_commerceabb.models.ProductDetailResponse
-import com.example.e_commerceabb.models.ProductResponse
-import com.example.e_commerceabb.models.SearchRequest
 import com.example.e_commerceabb.models.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -32,4 +28,8 @@ interface ProductsApi {
         @Body query: SearchRequest
     ): Response<ArrayList<ProductResponse>>
 
+    @GET("comments/product/{productId}")
+    suspend fun getComment(
+        @Path("productId") productId: String
+    ): Response<ArrayList<CommentsResponse>>
 }
