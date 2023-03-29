@@ -48,8 +48,6 @@ m
 Kapp/src/main/java/com/example/e_commerceabb/models/UpdateCustomerRequest.kt,0/9/09d77de8a831b6e28816a74b1fdf6077d409791f
 š
 japp/src/main/java/com/example/e_commerceabb/presentation/passwordrecovery/view/PasswordRecoveryFragment.kt,8/f/8f4691a39ca8c074885e8970722ff19e37749b23
-{
-Kapp/src/main/java/com/example/e_commerceabb/dialogs/CustomDialogFragment.kt,c/7/c73535b9b65505a85d559120aa5be13552255a59
 ƒ
 Sapp/src/main/java/com/example/e_commerceabb/domain/repository/CustomerRepository.kt,e/c/ec66bad0eb964c9b7a216633a384f04bd4563e5c
 m
@@ -60,8 +58,6 @@ Happ/src/main/java/com/example/e_commerceabb/models/OneMoreCustomParam.kt,e/6/e
 Kapp/src/main/java/com/example/e_commerceabb/presentation/pin/PinFragment.kt,a/b/ab4b2eb3ec579b9181128179c4c4ade4f60248b4
 v
 Fapp/src/main/java/com/example/e_commerceabb/data/api/BaseRepository.kt,a/f/af911d9a9d719a331c2dbd584afa878769491d5d
-€
-Papp/src/main/java/com/example/e_commerceabb/dialogs/LeaveReviewDialogFragment.kt,5/2/5261729d5e79a3195dd9e996e4fb5e32853a918d
 t
 Dapp/src/main/java/com/example/e_commerceabb/data/api/FavoritesApi.kt,7/e/7e07f2b56179c42ba31e5310d59c837834ccfd52
 ‹
@@ -90,5 +86,3 @@ u
 Eapp/src/main/java/com/example/e_commerceabb/models/DeliveryAddress.kt,2/8/28f92a63940372f6f6a20a133f6a6df2ce9924fe
 y
 Iapp/src/main/java/com/example/e_commerceabb/models/GetCustomerResponse.kt,d/2/d200e792b2c4c109d226e98e341c81a5a95b5134
-x
-Happ/src/main/java/com/example/e_commerceabb/data/api/RetrofitInstance.kt,0/c/0c3ce5f8414358f6f41d4eb2b0695be9331b1533

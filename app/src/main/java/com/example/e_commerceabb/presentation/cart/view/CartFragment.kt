@@ -92,7 +92,6 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         viewModel.deleted.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
-                    findNavController().navigate(R.id.nav_orders)
                     binding.progress.visibility = View.GONE
                 }
                 is Resource.Error -> {
@@ -122,6 +121,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 status = "shipped"
             )
             viewModel.placeOrders(request)
+            findNavController().navigate(R.id.nav_orders)
         }
     }
 

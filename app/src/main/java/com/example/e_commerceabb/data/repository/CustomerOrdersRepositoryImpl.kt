@@ -4,9 +4,7 @@ import com.example.e_commerceabb.data.api.BaseRepository
 import com.example.e_commerceabb.data.api.OrdersApi
 import com.example.e_commerceabb.data.api.Resource
 import com.example.e_commerceabb.domain.repository.CustomerOrdersRepository
-import com.example.e_commerceabb.models.CreateOrderResponse
-import com.example.e_commerceabb.models.CustomerOrdersResponse
-import com.example.e_commerceabb.models.PlaceOrderRequest
+import com.example.e_commerceabb.models.*
 import javax.inject.Inject
 
 class CustomerOrdersRepositoryImpl @Inject constructor(private val ordersApi: OrdersApi) :
@@ -17,5 +15,9 @@ class CustomerOrdersRepositoryImpl @Inject constructor(private val ordersApi: Or
 
     override suspend fun placeOrders(request: PlaceOrderRequest): Resource<CreateOrderResponse> {
         return safeApiCall { ordersApi.placeOrders(request) }
+    }
+
+    override suspend fun addComment(request: AddCommentRequest): Resource<CommentsResponse> {
+        return safeApiCall { ordersApi.addComment(request) }
     }
 }

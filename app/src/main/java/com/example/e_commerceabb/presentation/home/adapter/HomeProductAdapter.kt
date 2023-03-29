@@ -1,6 +1,7 @@
 package com.example.e_commerceabb.presentation.home.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.e_commerceabb.databinding.ListItemHomeProductBinding
@@ -28,7 +29,12 @@ class HomeProductAdapter : BaseAdapter<HomeProductsModel, ViewHolder>() {
                 subtitleProduct.text = item.subtitle
                 discountLabel.text = item.discountLAbel
                 discountAmountProduct.text = item.discountAmount
-                amountProduct.text = item.amount
+                if (item.amount == 0.0){
+                    amountProduct.visibility = View.GONE
+                } else {
+                    amountProduct.visibility = View.VISIBLE
+                    amountProduct.text = "${item.amount} $"
+                }
                 productImage.load(item.image)
                 favIcon.setOnClickListener {
                     item.onFavIconClick()

@@ -17,7 +17,7 @@ class HomeUiMapper @Inject constructor() {
                 subtitle = response.description ?: EMPTY,
                 discountLAbel = "-10%",
                 discountAmount = "${response.currentPrice} ${"$"}",
-                amount = "${response.previousPrice} ${"$"}",
+                amount = response.previousPrice?:0.0,
                 image = response.imageUrls?.getOrNull(0) ?: EMPTY,
                 onFavIconClick = {
                     onFavIconCLick?.invoke(response.id ?: EMPTY)

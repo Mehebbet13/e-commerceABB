@@ -1,6 +1,7 @@
 package com.example.e_commerceabb.presentation.productDetails.view
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceabb.R
@@ -35,8 +36,13 @@ class ProductDetailAdapter() :
                 subtitleProduct.text = item.description
                 titleProduct.text = item.name
                 discountLabel.text = "-10%"
-                discountAmountProduct.text = "${item.previousPrice} ${"$"}"
-                amountProduct.text = "${item.previousPrice} ${"$"}"
+                discountAmountProduct.text = "${item.currentPrice} $"
+                if (item.previousPrice == null) {
+                    amountProduct.visibility = View.GONE
+                } else {
+                    amountProduct.visibility = View.VISIBLE
+                    amountProduct.text = "${item.previousPrice} $"
+                }
                 productImage.load(item.imageUrls?.getOrNull(0) ?: Constants.EMPTY)
             }
         }
