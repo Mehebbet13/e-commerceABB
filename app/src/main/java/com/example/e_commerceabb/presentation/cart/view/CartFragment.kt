@@ -52,6 +52,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 is Resource.Success -> {
                     cartProductList.clear()
                     it.data?.let { data -> setAdapterData(data) }
+                    binding.progress.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -86,6 +87,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             when (it) {
                 is Resource.Success -> {
                     findNavController().navigate(R.id.nav_orders)
+                    binding.progress.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -103,10 +105,11 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             findNavController().popBackStack()
         }
         binding.btnBuyNow.setOnClickListener {
+            binding.progress.visibility = View.VISIBLE
             val customerId = viewModel.cartProducts.value?.data?.customerId?.id ?: EMPTY
             val email = viewModel.cartProducts.value?.data?.customerId?.email ?: EMPTY
             val products = viewModel.cartProducts.value?.data
-            val request = PlaceOrderRequest(customerId = customerId, email = email, products = products, status = "not shipped")
+            val request = PlaceOrderRequest(customerId = customerId, email = email, products = products, status = "shipped")
             viewModel.placeOrders(request)
         }
     }

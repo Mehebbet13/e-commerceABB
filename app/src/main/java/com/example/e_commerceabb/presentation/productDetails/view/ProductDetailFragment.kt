@@ -55,7 +55,7 @@ class ProductDetailFragment : Fragment() {
             binding.btnAddToCart.setOnClickListener {
                 viewModel.addToCard(item.id ?: EMPTY)
             }
-//            imgList.clear()
+            imgList.clear()
             item.imageUrls?.let {
                 imgList.addAll(it)
             }

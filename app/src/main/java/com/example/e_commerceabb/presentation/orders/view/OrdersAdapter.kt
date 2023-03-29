@@ -10,21 +10,12 @@ import com.example.e_commerceabb.utils.load
 class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
     private val orders: MutableList<Order> = mutableListOf()
     var onButtonClick: (() -> Unit)? = null
-var i = 0
-        fun setData(data: List<Order>) {
+
+    fun setData(data: List<Order>) {
         this.orders.clear()
         this.orders.addAll(data)
         notifyItemChanged(0)
     }
-//    fun setData(data: List<Order>, index: Int) {
-//        i = index
-//        if (index >= orders.size) {
-//            orders.add(data)
-//        } else {
-//            orders[index] = data
-//        }
-//        notifyDataSetChanged()
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
         val binding =

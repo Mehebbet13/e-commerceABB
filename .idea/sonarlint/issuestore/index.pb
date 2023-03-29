@@ -46,8 +46,6 @@ m
 =app/src/main/java/com/example/e_commerceabb/utils/Constant.kt,7/7/77b62c0c201bcc2558b5bd8a5300cdb610c759cb
 {
 Kapp/src/main/java/com/example/e_commerceabb/models/UpdateCustomerRequest.kt,0/9/09d77de8a831b6e28816a74b1fdf6077d409791f
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 š
 japp/src/main/java/com/example/e_commerceabb/presentation/passwordrecovery/view/PasswordRecoveryFragment.kt,8/f/8f4691a39ca8c074885e8970722ff19e37749b23
 {
@@ -58,20 +56,12 @@ m
 =app/src/main/java/com/example/e_commerceabb/models/Product.kt,e/3/e38e1a6db29de530fb3f42cba9b4108f736be1a7
 x
 Happ/src/main/java/com/example/e_commerceabb/models/OneMoreCustomParam.kt,e/6/e67d64d9eb28110b294fe7689941c14e853cf40f
-…
-Uapp/src/main/java/com/example/e_commerceabb/presentation/orders/view/OrdersAdapter.kt,7/e/7e5adb20f47baa430b936b8cd4f3572e3effda8d
-•
-eapp/src/main/java/com/example/e_commerceabb/presentation/passwordrecovery/view/NewPasswordFragment.kt,8/c/8c5b9b79fc2405deb383ed940f165a94ac6d81da
 {
 Kapp/src/main/java/com/example/e_commerceabb/presentation/pin/PinFragment.kt,a/b/ab4b2eb3ec579b9181128179c4c4ade4f60248b4
 v
 Fapp/src/main/java/com/example/e_commerceabb/data/api/BaseRepository.kt,a/f/af911d9a9d719a331c2dbd584afa878769491d5d
 €
 Papp/src/main/java/com/example/e_commerceabb/dialogs/LeaveReviewDialogFragment.kt,5/2/5261729d5e79a3195dd9e996e4fb5e32853a918d
-‹
-[app/src/main/java/com/example/e_commerceabb/presentation/favorites/view/FavoritesAdapter.kt,2/2/22e15253445d4d9905a0986562e2cb6ca91c1304
-“
-capp/src/main/java/com/example/e_commerceabb/presentation/favorites/view/FavoriteProductsFragment.kt,0/7/07fff7e213db785098259627a1b909198684610d
 t
 Dapp/src/main/java/com/example/e_commerceabb/data/api/FavoritesApi.kt,7/e/7e07f2b56179c42ba31e5310d59c837834ccfd52
 ™
@@ -90,8 +80,6 @@ x
 Happ/src/main/java/com/example/e_commerceabb/models/NewCustomerRequest.kt,a/7/a7a2eadb4cbe2f87dd5a586bfe7753f4cb40ed91
 …
 Uapp/src/main/java/com/example/e_commerceabb/data/repository/CustomerRepositoryImpl.kt,a/5/a5b698ae195098c17fec5da487237c8f1e28b468
-’
-bapp/src/main/java/com/example/e_commerceabb/presentation/registration/viewmodel/SignUpViewModel.kt,d/3/d31e9c413ecd21a7fc9af4f42450e4902e2272ed
 ’
 bapp/src/main/java/com/example/e_commerceabb/presentation/profile/viewmodel/FillProfileViewModel.kt,7/7/77c732f33f9d451ca5438e8d6007b4ef9282c88f
 }

@@ -46,6 +46,7 @@ class FavoriteProductsFragment : Fragment(R.layout.fragment_favorite_products) {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { data -> setAdapterData(data) }
+                    binding.progress.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     Toast.makeText(

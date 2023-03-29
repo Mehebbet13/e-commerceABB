@@ -41,7 +41,7 @@ class ProductAdapter(val isGrouped: Boolean) :
                 titleProduct.text = item.name
                 subtitleProduct.text = item.description
                 discountLabel.text = "-10%"
-                discountAmountProduct.text = "${item.previousPrice} ${"$"}"
+                discountAmountProduct.text = "${item.currentPrice} ${"$"}"
                 amountProduct.text = "${item.previousPrice} ${"$"}"
                 imgProduct.load(item.imageUrls?.getOrNull(0) ?: EMPTY)
                 productRoot.setOnClickListener {

@@ -91,6 +91,7 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
         observeUpdateCustomer()
         handleEditProfile()
         handleLogOut()
+        handleChangePassword()
         setListeners()
         handleContinueButton()
         handleAdminButtons()
@@ -105,6 +106,12 @@ class FillProfileFragment : Fragment(R.layout.fragment_fill_profile) {
             sharedPreferences?.edit()?.putBoolean(Constants.IS_USER_REGISTERED, false)?.apply()
             tokenManager.removeToken()
             findNavController().navigate(R.id.action_fillProfileFragment_to_onboardingFragment)
+        }
+    }
+
+    private fun handleChangePassword() {
+        binding.changePassword.setOnClickListener {
+            findNavController().navigate(R.id.passwordRecoveryFragment)
         }
     }
 

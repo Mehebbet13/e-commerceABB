@@ -97,6 +97,7 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
                         R.id.action_signUpStepTwoFragment_to_pinFragment,
                         bundle
                     )
+                    binding.progress.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -135,6 +136,7 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
                 is Resource.Success -> {
                     it.data?.token?.let { it1 -> tokenManager.saveToken(it1) }
                     findNavController().navigate(R.id.action_signUpStepTwoFragment_to_fillProfileFragment)
+                    binding.progress.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     Toast.makeText(
@@ -282,6 +284,7 @@ class SignUpStepTwoFragment : Fragment(R.layout.fragment_sign_up_step_two) {
                 findNavController().navigateUp()
             }
             btnContinue.setOnClickListener {
+                binding.progress.visibility = View.VISIBLE
                 if (isSignedIn) {
                     val loginRequest = LoginRequest(
                         loginOrEmail = binding.emailInput.text.toString(),
