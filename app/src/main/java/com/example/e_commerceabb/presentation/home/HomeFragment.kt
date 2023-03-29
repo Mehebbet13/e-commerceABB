@@ -40,6 +40,9 @@ class HomeFragment : Fragment() {
         binding.rvHome.adapter = homeAdapter
         viewModel.getProducts()
         viewModel.getCategory()
+        binding.imgFav.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_home_to_favoriteProductsFragment)
+        }
         binding.searchBar.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -73,4 +76,5 @@ class HomeFragment : Fragment() {
                 bundle
             )
         }
-    }}
+    }
+}

@@ -17,6 +17,7 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder> : RecyclerView.Adapt
 
     fun setList(newList: List<T>) {
         if (newList==newList.filterIsInstance<HomeCategoryListModel>()) {
+            list.clear()
             list.addAll(0, newList)
         } else {
             list.addAll(newList)
