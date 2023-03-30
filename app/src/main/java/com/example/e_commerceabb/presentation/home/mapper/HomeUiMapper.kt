@@ -18,7 +18,7 @@ class HomeUiMapper @Inject constructor() {
                 discountLAbel = "-10%",
                 discountAmount = "${response.currentPrice} ${"$"}",
                 amount = response.previousPrice?:0.0,
-                image = response.imageUrls?.getOrNull(0) ?: EMPTY,
+                image = response.imageUrls.getOrNull(0) ?: EMPTY,
                 onFavIconClick = {
                     onFavIconCLick?.invoke(response.id ?: EMPTY)
                 },
@@ -67,11 +67,5 @@ class HomeUiMapper @Inject constructor() {
                 list = mapCategoryItemToUiModel(categoryList)
             )
         )
-    }
-
-
-    companion object {
-        const val STRING_FORMAT = "%i %s"
-
     }
 }

@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/welcome_button"
         android:textAllCaps="false"
+        android:layout_marginBottom="8dp"
         android:textColor="@color/whiteText"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

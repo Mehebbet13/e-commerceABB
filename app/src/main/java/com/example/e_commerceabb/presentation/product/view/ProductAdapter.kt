@@ -57,11 +57,7 @@ class ProductAdapter(val isGrouped: Boolean, val isFaved: Boolean) :
                 }
                 favIcon.setOnClickListener {
                     itemFavIconListener?.invoke(item.id ?: EMPTY)
-                }
-                if (isFaved) {
                     favIcon.setImageResource(R.drawable.ic_heart_fill)
-                } else {
-                    favIcon.setImageResource(R.drawable.ic_heart)
                 }
             }
         }
@@ -87,11 +83,7 @@ class ProductAdapter(val isGrouped: Boolean, val isFaved: Boolean) :
                 }
                 favIcon.setOnClickListener {
                     itemFavIconListener?.invoke(item.id ?: EMPTY)
-                }
-                if (isFaved) {
                     favIcon.setImageResource(R.drawable.ic_heart_fill)
-                } else {
-                    favIcon.setImageResource(R.drawable.ic_heart)
                 }
             }
         }

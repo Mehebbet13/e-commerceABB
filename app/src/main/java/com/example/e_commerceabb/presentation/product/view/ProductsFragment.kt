@@ -43,9 +43,6 @@ class ProductsFragment : Fragment() {
             setAdapter()
         }
 
-        viewModel.isRefreshing.observe(viewLifecycleOwner) { isRefreshing ->
-            binding.progressLayout.root.visibility = if (isRefreshing) View.VISIBLE else View.GONE
-        }
         binding.searchBar.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -72,6 +69,7 @@ class ProductsFragment : Fragment() {
         }
         binding.rvProducts.adapter = productAdapter
         viewModel.products.observe(viewLifecycleOwner) { item ->
+            binding.progress.visibility=View.GONE
             productAdapter?.setData(item.reversed())
             productAdapter?.itemClickListener = { itemNo ->
                 val bundle = bundleOf(
@@ -88,14 +86,6 @@ class ProductsFragment : Fragment() {
             binding.imgFav.setOnClickListener {
                 findNavController().navigate(R.id.action_productsFragment_to_favoriteProductsFragment)
             }
-//            productAdapter?.itemFavIconListener = {
-//                isFaved = isFaved
-//                if (isFaved.not()) {
-//                    viewModel.addFavoriteProduct(it)
-//                } else {
-//                    viewModel.deleteFavoriteProduct(it)
-//                }
-//            }
         }
     }
 }

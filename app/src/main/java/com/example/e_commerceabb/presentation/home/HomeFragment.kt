@@ -57,6 +57,7 @@ class HomeFragment : Fragment() {
         })
         viewModel.productsList.observe(viewLifecycleOwner) { resource ->
             homeAdapter.setList(resource)
+            binding.progress.visibility=View.GONE
         }
         viewModel.catalog.observe(viewLifecycleOwner) { resource ->
             homeAdapter.setList(resource)
