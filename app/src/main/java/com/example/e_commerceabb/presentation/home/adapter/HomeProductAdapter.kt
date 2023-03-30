@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.e_commerceabb.R
 import com.example.e_commerceabb.databinding.ListItemHomeProductBinding
 import com.example.e_commerceabb.models.HomeProductsModel
 import com.example.e_commerceabb.utils.BaseAdapter
@@ -38,6 +39,7 @@ class HomeProductAdapter : BaseAdapter<HomeProductsModel, ViewHolder>() {
                 productImage.load(item.image)
                 favIcon.setOnClickListener {
                     item.onFavIconClick()
+                      favIcon.setImageResource(R.drawable.ic_heart_fill)
                 }
                 homeProductRoot.setOnClickListener {
                     item.onItemCLick()
